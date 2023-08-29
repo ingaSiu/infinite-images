@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 
+import { PexelsImage } from './types/images';
 import { getImagesPaginated } from './api/images';
 
 const App = () => {
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState<PexelsImage[]>([]);
 
   const getImages = () => {
     getImagesPaginated().then((photos) => {
