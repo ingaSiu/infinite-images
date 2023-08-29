@@ -43,7 +43,7 @@ const Home = () => {
       {images.length > 0 && (
         <div className={styles.imgWrapper}>
           {images.map((item) => (
-            <Card key={item.id} src={item.src.medium} alt={item.alt} />
+            <Card key={item.id} src={item.src.medium} alt={item.alt} photographer={item.photographer} />
           ))}
         </div>
       )}
