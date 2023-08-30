@@ -8,13 +8,25 @@ import styles from './Home.module.scss';
 const Home = () => {
   const [images, setImages] = useState<PexelsImage[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-
   const [page, setPage] = useState(1);
+
+  const [liked, setLiked] = useState<number[]>([]);
 
   const bottom = useRef<HTMLDivElement | null>(null);
 
   //workaround for strict mode for useffect firing twice
   const initialized = useRef(false);
+
+  const handleFavourites = (itemId: number) => {
+    if (liked.includes(itemId)) {
+      setLiked(liked.filter((id) => id !== itemId));
+
+      return;
+    }
+    setLiked((prevLiked) => [...prevLiked, itemId]);
+
+    console.log('Adding item to liked array:', liked);
+  };
 
   const getImages = () => {
     setIsLoading(true);
@@ -30,6 +42,8 @@ const Home = () => {
   useEffect(() => {
     //will trigger only on 1st useeffect - page load
     if (!initialized.current) {
+      const data = window.localStorage.getItem('favouriteImages');
+      if (data !== null) setLiked(JSON.parse(data));
       console.log('initial load effect logic');
       initialized.current = true;
       getImages().then(() => {
@@ -53,12 +67,23 @@ const Home = () => {
     }
   }, [page]);
 
+  useEffect(() => {
+    window.localStorage.setItem('favouriteImages', JSON.stringify(liked));
+  }, [liked]);
+
   return (
     <div>
       {images.length > 0 && (
         <div className={styles.imgWrapper}>
           {images.map((item) => (
-            <Card key={item.id} src={item.src.medium} alt={item.alt} photographer={item.photographer} />
+            <Card
+              key={item.id}
+              src={item.src.medium}
+              alt={item.alt}
+              photographer={item.photographer}
+              onClick={() => handleFavourites(item.id)}
+              isClicked={liked.includes(item.id)}
+            />
           ))}
         </div>
       )}
