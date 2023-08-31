@@ -10,7 +10,7 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
 
-  const [liked, setLiked] = useState<number[]>([]);
+  const [likedPhotos, setLikedPhotos] = useState<number[]>([]);
 
   const bottom = useRef<HTMLDivElement | null>(null);
 
@@ -18,14 +18,14 @@ const Home = () => {
   const initialized = useRef(false);
 
   const handleFavourites = (itemId: number) => {
-    if (liked.includes(itemId)) {
-      setLiked(liked.filter((id) => id !== itemId));
+    if (likedPhotos.includes(itemId)) {
+      setLikedPhotos(likedPhotos.filter((id) => id !== itemId));
 
       return;
     }
-    setLiked((prevLiked) => [...prevLiked, itemId]);
+    setLikedPhotos((prevLikedPhotos) => [...prevLikedPhotos, itemId]);
 
-    console.log('Adding item to liked array:', liked);
+    console.log('Adding item to liked array:', likedPhotos);
   };
 
   const getImages = () => {
@@ -43,7 +43,7 @@ const Home = () => {
     //will trigger only on 1st useeffect - page load
     if (!initialized.current) {
       const data = window.localStorage.getItem('favouriteImages');
-      if (data !== null) setLiked(JSON.parse(data));
+      if (data !== null) setLikedPhotos(JSON.parse(data));
       console.log('initial load effect logic');
       initialized.current = true;
       getImages().then(() => {
@@ -68,8 +68,8 @@ const Home = () => {
   }, [page]);
 
   useEffect(() => {
-    window.localStorage.setItem('favouriteImages', JSON.stringify(liked));
-  }, [liked]);
+    window.localStorage.setItem('favouriteImages', JSON.stringify(likedPhotos));
+  }, [likedPhotos]);
 
   return (
     <div>
@@ -82,7 +82,7 @@ const Home = () => {
               alt={item.alt}
               photographer={item.photographer}
               onClick={() => handleFavourites(item.id)}
-              isClicked={liked.includes(item.id)}
+              isClicked={likedPhotos.includes(item.id)}
             />
           ))}
         </div>
