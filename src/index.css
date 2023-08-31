@@ -9,4 +9,5 @@
 body {
   min-height: 100vh;
   font-family: 'Noto Sans', sans-serif;
+  background-color: rgb(232, 232, 232);
 }
