@@ -14,11 +14,16 @@ const Card = ({ alt, src, photographer, onClick, isClicked }: CardProps) => {
     <div className={styles.container}>
       <img src={src} alt={alt} loading="lazy" className={styles.image} />
       <div className={styles.overlay}>
-        <div className={styles.title}>{alt}</div>
-        <div className={styles.author}>{photographer}</div>
-        <Button onClick={onClick} isClicked={isClicked}>
-          Favourite
-        </Button>
+        <div className={styles.textWrapper}>
+          <div className={styles.title}>{alt}</div>
+          <div className={styles.author}>{photographer}</div>
+        </div>
+
+        <div className={styles.btnWrapper}>
+          <Button onClick={onClick} isClicked={isClicked}>
+            Favourite
+          </Button>
+        </div>
       </div>
     </div>
   );
