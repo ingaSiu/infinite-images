@@ -13,22 +13,45 @@
 }
 
 .overlay {
-  transition: 0.5s ease;
-  opacity: 0;
   position: absolute;
-  top: 40%;
-  left: 40%;
-
-  color: white;
-  .title {
-    font-weight: bold;
-  }
+  top: 30%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: 0.5s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+.container:hover .overlay {
+  opacity: 1;
 }
 
 .container:hover .image {
   opacity: 0.5;
 }
 
-.container:hover .overlay {
-  opacity: 1;
+.textWrapper {
+  color: white;
+  text-align: center;
+  .title {
+    font-weight: bold;
+
+    &.title:after {
+      content: '';
+      display: block;
+      margin: 0 auto;
+      width: 30%;
+      padding-top: 10px;
+      border-bottom: 3px solid #fff;
+    }
+  }
+  .author {
+    font-style: italic;
+    padding-top: 8px;
+  }
 }
