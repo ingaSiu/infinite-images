@@ -1,6 +1,9 @@
 .container {
   position: relative;
+  border-radius: 10px;
+  box-shadow: 3px 3px #d1d3d2;
 }
+
 .image {
   opacity: 1;
   display: block;
@@ -39,19 +42,20 @@
   color: white;
   text-align: center;
   .title {
-    font-weight: bold;
+    font-weight: 800;
 
     &.title:after {
       content: '';
       display: block;
       margin: 0 auto;
-      width: 30%;
+      width: 90px;
       padding-top: 10px;
       border-bottom: 3px solid #fff;
     }
   }
   .author {
     font-style: italic;
+    font-weight: 500;
     padding-top: 8px;
   }
 }
