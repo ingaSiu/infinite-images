@@ -28,15 +28,13 @@ const Home = () => {
     console.log('Adding item to liked array:', likedPhotos);
   };
 
-  const getImages = () => {
+  const getImages = async () => {
     setIsLoading(true);
-    return getImagesPaginated(page).then((photos) => {
-      console.log(photos);
-
-      //setImages((prevItems) => [...new Set([...prevItems, ...photos])]);
-      setImages((prevItems) => [...prevItems, ...photos]);
-      setIsLoading(false);
-    });
+    const photos = await getImagesPaginated(page);
+    console.log(photos);
+    //setImages((prevItems) => [...new Set([...prevItems, ...photos])]);
+    setImages((prevItems) => [...prevItems, ...photos]);
+    setIsLoading(false);
   };
 
   useEffect(() => {
