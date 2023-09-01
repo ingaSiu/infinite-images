@@ -5,13 +5,15 @@
   border-radius: 95px;
   background-color: inherit;
   border: 1px white solid;
-  font-weight: bold;
+  font-weight: 600;
   outline: 0 solid transparent;
+  font-size: 14px;
   &:hover {
     cursor: pointer;
   }
 }
 
 .btnClicked {
-  background-color: darkgray;
+  background-color: lightgrey;
+  color: black;
 }
