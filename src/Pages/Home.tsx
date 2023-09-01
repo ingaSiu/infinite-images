@@ -29,12 +29,17 @@ const Home = () => {
   };
 
   const getImages = async () => {
-    setIsLoading(true);
-    const photos = await getImagesPaginated(page);
-    console.log(photos);
-    //setImages((prevItems) => [...new Set([...prevItems, ...photos])]);
-    setImages((prevItems) => [...prevItems, ...photos]);
-    setIsLoading(false);
+    try {
+      setIsLoading(true);
+      const photos = await getImagesPaginated(page);
+      console.log(photos);
+      //setImages((prevItems) => [...new Set([...prevItems, ...photos])]);
+      setImages((prevItems) => [...prevItems, ...photos]);
+      setIsLoading(false);
+    } catch (err) {
+      console.error('An error occurred while fetching images:', err);
+      // setErrorState(err.message); can make err msg
+    }
   };
 
   useEffect(() => {
