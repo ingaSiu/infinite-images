@@ -77,7 +77,7 @@ const Home = () => {
   return (
     <div>
       {images.length > 0 && (
-        <div className={styles.imgWrapper}>
+        <div className={styles.imagesContainer}>
           {images.map((item) => (
             <Card
               key={item.id}
@@ -90,7 +90,7 @@ const Home = () => {
           ))}
         </div>
       )}
-      {isLoading && <p>Loading...</p>}
+      {isLoading && <p className={styles.loader}>Loading...</p>}
       <div ref={bottom}></div>
     </div>
   );
