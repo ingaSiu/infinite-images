@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import { useEffect, useRef, useState } from 'react';
 
 import Card from '../components/card/Card';
@@ -33,10 +35,15 @@ const Home = () => {
       setIsLoading(true);
       const photos = await getImagesPaginated(page);
       console.log(photos);
-      //setImages((prevItems) => [...new Set([...prevItems, ...photos])]);
-      setImages((prevItems) => [...prevItems, ...photos]);
+      //check if api returned duplicates and remove if any
+      const filteredPhotos = photos.filter((photo) => !images.some((image) => image.id === photo.id));
+      setImages((prevItems) => [...prevItems, ...filteredPhotos]);
       setIsLoading(false);
     } catch (err) {
+      if (page > 1) {
+        setPage((prevItem) => prevItem - 1);
+      }
+      //TODO add some UI error
       console.error('An error occurred while fetching images:', err);
       // setErrorState(err.message); can make err msg
     }
@@ -45,11 +52,9 @@ const Home = () => {
   useEffect(() => {
     //will trigger only on 1st useeffect - page load
     if (!initialized.current) {
-      const data = window.localStorage.getItem('favouriteImages');
-      if (data !== null) setLikedPhotos(JSON.parse(data));
       console.log('initial load effect logic');
-      initialized.current = true;
-      getImages().then(() => {
+      const getImagesAndObserve = async () => {
+        await getImages();
         const observer = new IntersectionObserver((entries) => {
           if (entries[0].isIntersecting) {
             console.log('is intersecting. increasing page');
@@ -59,7 +64,12 @@ const Home = () => {
         if (bottom.current) {
           observer.observe(bottom.current);
         }
-      });
+      };
+
+      const data = window.localStorage.getItem('favouriteImages');
+      if (data !== null) setLikedPhotos(JSON.parse(data));
+      getImagesAndObserve();
+      initialized.current = true;
     }
   }, []);
 
@@ -90,8 +100,10 @@ const Home = () => {
           ))}
         </div>
       )}
+      {/*TODO create nice loader*/}
       {isLoading && <p className={styles.loader}>Loading...</p>}
       <div ref={bottom}></div>
+      {/*TODO add Load more button as a backup*/}
     </div>
   );
 };
