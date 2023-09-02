@@ -11,7 +11,7 @@ type CardProps = {
 
 const Card = ({ alt, src, photographer, onClick, isClicked }: CardProps) => {
   return (
-    <div className={styles.container}>
+    <div className={styles.imageWrapper}>
       <img src={src} alt={alt} loading="lazy" className={styles.image} />
       <div className={styles.overlay}>
         <div className={styles.textWrapper}>
