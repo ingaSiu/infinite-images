@@ -85,13 +85,13 @@ const Home = () => {
   }, [likedPhotos]);
 
   return (
-    <div>
+    <div className={styles.pageWrapper}>
       {images.length > 0 && (
         <div className={styles.imagesContainer}>
           {images.map((item) => (
             <Card
               key={item.id}
-              src={item.src.medium}
+              src={item.src.large}
               alt={item.alt}
               photographer={item.photographer}
               onClick={() => handleFavourites(item.id)}
