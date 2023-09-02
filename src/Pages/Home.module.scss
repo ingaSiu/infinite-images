@@ -1,10 +1,41 @@
-.imagesContainer {
+.pageWrapper {
+  background-color: red;
+
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  // width: 100vw;
+  // height: 100vh;
+}
+
+.imagesContainer {
+  // display: flex;
+  // flex-direction: column;
+  // flex-wrap: wrap;
   gap: 24px;
   justify-content: center;
   padding-top: 30px;
   padding-bottom: 30px;
+  background-color: aqua;
+
+  // position: relative;
+  width: 60%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  @media only screen and (max-width: 1200px) {
+    width: 80%;
+  }
+
+  @media only screen and (max-width: 768px) {
+    width: 80%;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media only screen and (max-width: 480px) {
+    width: 100%;
+    grid-template-columns: 1fr;
+  }
 }
 
 .loader {
