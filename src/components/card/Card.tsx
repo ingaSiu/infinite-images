@@ -11,7 +11,6 @@ type CardProps = {
 };
 
 const Card = ({ alt, src, photographer, onClick, isClicked, tabIndex }: CardProps) => {
-  //TODO load high res image on click. use src.original
   return (
     <div tabIndex={tabIndex} className={styles.imageWrapper}>
       <img src={src} alt={alt} loading="lazy" className={styles.image} />

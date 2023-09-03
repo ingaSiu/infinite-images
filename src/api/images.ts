@@ -11,7 +11,6 @@ export const getImagesPaginated = async (page: number = 1, perPage: number = 40)
     },
   });
   if (!response.ok) {
-    // Handle non-OK responses (e.g., 404, 500)
     throw new Error(`HTTP Error: ${response.status}`);
   }
   const data = await response.json();

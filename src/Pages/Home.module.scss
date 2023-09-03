@@ -3,49 +3,31 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  // width: 100vw;
-  // height: 100vh;
+
   @media only screen and (min-width: 1200px) {
     padding: 20px;
   }
 }
 
 .imagesContainer {
-  // display: flex;
-  // flex-direction: column;
-  // flex-wrap: wrap;
   gap: 0;
   justify-content: center;
-  // padding-top: 30px;
-  // padding-bottom: 30px;
-
-  // position: relative;
-  // width: 60%;
   display: grid;
-  // grid-template-columns: repeat(3, 1fr);
   width: 100%;
   grid-template-columns: 1fr;
 
   @media only screen and (min-width: 480px) {
     grid-template-columns: repeat(2, 1fr);
-    // gap: 0;
   }
 
   @media only screen and (min-width: 728px) {
     grid-template-columns: repeat(3, 1fr);
-    // gap: 0;
   }
 
   @media only screen and (min-width: 1200px) {
-    // grid-template-columns: repeat(3, 1fr);
     width: 60%;
     gap: 14px;
   }
-
-  // @media only screen and (max-width: 480px) {
-  //   width: 100%;
-  //   grid-template-columns: 1fr;
-  // }
 }
 
 .intersectBox {

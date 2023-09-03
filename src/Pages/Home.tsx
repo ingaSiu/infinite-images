@@ -12,42 +12,31 @@ const Home = () => {
   const [images, setImages] = useState<PexelsImage[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
-  const prevPage = useRef(0);
-
   const [likedPhotos, setLikedPhotos] = useState<number[]>([]);
-
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
+  const prevPage = useRef(0);
   const bottom = useRef<HTMLDivElement | null>(null);
-
-  //workaround for strict mode for useffect firing twice
   const initialized = useRef(false);
 
   const handleFavourites = (itemId: number) => {
     if (likedPhotos.includes(itemId)) {
       setLikedPhotos(likedPhotos.filter((id) => id !== itemId));
-
       return;
     }
     setLikedPhotos((prevLikedPhotos) => [...prevLikedPhotos, itemId]);
-
-    console.log('Adding item to liked array:', likedPhotos);
   };
 
   const getImages = async () => {
     try {
       setIsLoading(true);
       const photos = await getImagesPaginated(page);
-      console.log(photos);
-      //check if api returned duplicates and remove if any
       const filteredPhotos = photos.filter((photo) => !images.some((image) => image.id === photo.id));
       setImages((currentItems) => [...currentItems, ...filteredPhotos]);
     } catch (err) {
       if (page > 1) {
         setPage((currentPage) => currentPage - 1);
       }
-      //TODO add some UI error
-      console.error('An error occurred while fetching images:', err);
       setErrorMsg('Could not load images');
       setTimeout(() => {
         setErrorMsg(null);
@@ -58,14 +47,11 @@ const Home = () => {
   };
 
   useEffect(() => {
-    //will trigger only on 1st useeffect - page load
     if (!initialized.current) {
-      console.log('initial load effect logic');
       const getImagesAndObserve = async () => {
         await getImages();
         const observer = new IntersectionObserver((entries) => {
           if (entries[0].isIntersecting) {
-            console.log('is intersecting. increasing page');
             setPage((currentPage) => currentPage + 1);
           }
         });
@@ -83,7 +69,6 @@ const Home = () => {
 
   useEffect(() => {
     if (page > 1 && prevPage.current < page) {
-      console.log('page change effect logic');
       getImages();
     }
     prevPage.current = page;
