@@ -1,7 +1,9 @@
+@use '../../scss/colors' as c;
+
 .imageWrapper {
   position: relative;
   border-radius: 6px;
-  box-shadow: 3px 3px #d1d3d2;
+  box-shadow: 3px 3px c.$colorAccentGrey;
   overflow: hidden;
   margin: 10px;
 }
@@ -56,7 +58,7 @@
 }
 
 .textWrapper {
-  color: #fff;
+  color: c.$colorWhite;
   text-align: center;
   max-width: 90%;
   .title {
@@ -71,7 +73,7 @@
       margin: 0 auto;
       width: 90px;
       padding-top: 10px;
-      border-bottom: 3px solid #fff;
+      border-bottom: 3px solid c.$colorWhite;
     }
   }
   .author {

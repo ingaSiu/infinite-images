@@ -1,3 +1,5 @@
+@use '../scss/colors' as c;
+
 .pageWrapper {
   display: flex;
   flex-direction: column;
@@ -35,10 +37,10 @@
 }
 
 .toast {
-  background-color: #fff;
+  background-color: c.$colorWhite;
   padding: 10px;
   font-size: 24px;
-  border: 1px solid #000;
+  border: 1px solid c.$colorBlack;
   border-radius: 6px;
   position: fixed;
   left: 50%;
