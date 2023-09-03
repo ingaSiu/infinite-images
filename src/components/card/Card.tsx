@@ -7,12 +7,13 @@ type CardProps = {
   src: string;
   onClick?: (event: React.SyntheticEvent) => void;
   isClicked?: boolean;
+  tabIndex: number;
 };
 
-const Card = ({ alt, src, photographer, onClick, isClicked }: CardProps) => {
+const Card = ({ alt, src, photographer, onClick, isClicked, tabIndex }: CardProps) => {
   //TODO load high res image on click. use src.original
   return (
-    <div className={styles.imageWrapper}>
+    <div tabIndex={tabIndex} className={styles.imageWrapper}>
       <img src={src} alt={alt} loading="lazy" className={styles.image} />
       <div className={styles.overlay}>
         <div className={styles.textWrapper}>
