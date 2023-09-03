@@ -9,6 +9,7 @@ import { getImagesPaginated } from '../api/images';
 import styles from './Home.module.scss';
 
 const Home = () => {
+  const FAVOURITES_KEY = import.meta.env.VITE_FAVOURITES_KEY;
   const [images, setImages] = useState<PexelsImage[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
@@ -60,7 +61,7 @@ const Home = () => {
         }
       };
 
-      const data = window.localStorage.getItem('favouriteImages');
+      const data = window.localStorage.getItem(FAVOURITES_KEY);
       if (data !== null) setLikedPhotos(JSON.parse(data));
       getImagesAndObserve();
       initialized.current = true;
@@ -75,7 +76,7 @@ const Home = () => {
   }, [page]);
 
   useEffect(() => {
-    window.localStorage.setItem('favouriteImages', JSON.stringify(likedPhotos));
+    window.localStorage.setItem(FAVOURITES_KEY, JSON.stringify(likedPhotos));
   }, [likedPhotos]);
 
   return (
