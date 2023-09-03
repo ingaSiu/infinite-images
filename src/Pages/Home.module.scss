@@ -47,3 +47,19 @@
   //   grid-template-columns: 1fr;
   // }
 }
+
+.intersectBox {
+  height: 30px;
+}
+
+.toast {
+  background-color: #fff;
+  padding: 10px;
+  font-size: 24px;
+  border: 1px solid #000;
+  border-radius: 6px;
+  position: fixed;
+  left: 50%;
+  bottom: 30px;
+  transform: translate(-50%);
+}
