@@ -1,23 +1,27 @@
+@use '../../scss/colors' as c;
+
 .imageWrapper {
   position: relative;
   border-radius: 6px;
-  box-shadow: 3px 3px #d1d3d2;
+  box-shadow: 3px 3px c.$colorAccentGrey;
+  overflow: hidden;
+  margin: 10px;
 }
 
 .image {
+  aspect-ratio: 4/3;
   opacity: 1;
   display: block;
   transition: 0.5s ease;
-  backface-visibility: hidden;
-  height: 200px;
-  width: 300px;
+  width: 100%;
+  height: auto;
   object-fit: cover;
   border-radius: 6px;
 }
 
 .overlay {
   position: absolute;
-  top: 30%;
+  top: 0;
   bottom: 0;
   left: 0;
   right: 0;
@@ -28,29 +32,48 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 16px;
-}
-.imageWrapper:hover .overlay {
-  opacity: 1;
+  margin-top: 10px;
 }
 
-.imageWrapper:hover .image {
-  opacity: 0.5;
+@media (hover: hover) {
+  .imageWrapper:hover .overlay {
+    opacity: 1;
+  }
+
+  .imageWrapper:hover .image {
+    opacity: 0.5;
+  }
+}
+
+@media (hover: none) {
+  .imageWrapper:focus .overlay {
+    opacity: 1;
+  }
+
+  .imageWrapper:focus .image {
+    opacity: 0.5;
+  }
 }
 
 .textWrapper {
-  color: white;
+  color: c.$colorWhite;
   text-align: center;
+  max-width: 90%;
   .title {
     font-weight: 800;
 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     &.title:after {
       content: '';
       display: block;
       margin: 0 auto;
       width: 90px;
       padding-top: 10px;
-      border-bottom: 3px solid #fff;
+      border-bottom: 3px solid c.$colorWhite;
     }
   }
   .author {

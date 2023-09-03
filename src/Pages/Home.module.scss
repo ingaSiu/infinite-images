@@ -1,12 +1,49 @@
-.imagesContainer {
+@use '../scss/colors' as c;
+
+.pageWrapper {
   display: flex;
-  flex-wrap: wrap;
-  gap: 24px;
+  flex-direction: column;
   justify-content: center;
-  padding-top: 30px;
-  padding-bottom: 30px;
+  align-items: center;
+
+  @media only screen and (min-width: 1200px) {
+    padding: 20px;
+  }
 }
 
-.loader {
-  text-align: center;
+.imagesContainer {
+  gap: 0;
+  justify-content: center;
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr;
+
+  @media only screen and (min-width: 480px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media only screen and (min-width: 728px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media only screen and (min-width: 1200px) {
+    width: 60%;
+    gap: 14px;
+  }
+}
+
+.intersectBox {
+  height: 30px;
+}
+
+.toast {
+  background-color: c.$colorWhite;
+  padding: 10px;
+  font-size: 24px;
+  border: 1px solid c.$colorBlack;
+  border-radius: 6px;
+  position: fixed;
+  left: 50%;
+  bottom: 30px;
+  transform: translate(-50%);
 }

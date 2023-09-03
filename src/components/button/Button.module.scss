@@ -1,10 +1,12 @@
+@use '../../scss/colors' as c;
+
 .btn {
-  color: white;
+  color: c.$colorWhite;
   text-align: center;
   padding: 8px 16px;
   border-radius: 95px;
   background-color: inherit;
-  border: 1px white solid;
+  border: 1px c.$colorWhite solid;
   font-weight: 600;
   outline: 0 solid transparent;
   font-size: 14px;
@@ -14,6 +16,6 @@
 }
 
 .btnClicked {
-  background-color: lightgrey;
-  color: black;
+  background-color: c.$colorActiveElement;
+  color: c.$colorBlack;
 }
