@@ -48,15 +48,11 @@ const Home = () => {
   };
 
   useEffect(() => {
-    console.log('initial effect');
     if (!initialized.current) {
-      console.log('initial page load');
       const getImagesAndObserve = async () => {
         await getImages();
         const observer = new IntersectionObserver((entries) => {
-          console.log('creating intersect observer');
           if (entries[0].isIntersecting) {
-            console.log('intersecting');
             setPage((currentPage) => currentPage + 1);
           }
         });
