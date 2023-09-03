@@ -48,11 +48,15 @@ const Home = () => {
   };
 
   useEffect(() => {
+    console.log('initial effect');
     if (!initialized.current) {
+      console.log('initial page load');
       const getImagesAndObserve = async () => {
         await getImages();
         const observer = new IntersectionObserver((entries) => {
+          console.log('creating intersect observer');
           if (entries[0].isIntersecting) {
+            console.log('intersecting');
             setPage((currentPage) => currentPage + 1);
           }
         });
@@ -100,7 +104,8 @@ const Home = () => {
         {isLoading && <Loader />}
         {errorMsg && <div className={styles.toast}>{errorMsg}</div>}
       </div>
-      <div className={styles.intersectBox} ref={bottom}></div>
+      <div ref={bottom}></div>
+      <div className={styles.intersectBox}>&nbsp;</div>
     </>
   );
 };
