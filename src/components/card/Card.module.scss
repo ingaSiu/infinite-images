@@ -37,14 +37,12 @@
   margin-top: 10px;
 }
 
-@media (hover: hover) {
-  .imageWrapper:hover .overlay {
-    opacity: 1;
-  }
+.imageWrapper:hover .overlay {
+  opacity: 1;
+}
 
-  .imageWrapper:hover .image {
-    opacity: 0.5;
-  }
+.imageWrapper:hover .image {
+  opacity: 0.5;
 }
 
 @media (hover: none) {
