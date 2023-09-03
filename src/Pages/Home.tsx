@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 
 import Card from '../components/card/Card';
+import Loader from '../components/loader/Loader';
 import { PexelsImage } from '../types/images';
 import { getImagesPaginated } from '../api/images';
 import styles from './Home.module.scss';
@@ -85,26 +86,29 @@ const Home = () => {
   }, [likedPhotos]);
 
   return (
-    <div className={styles.pageWrapper}>
-      {images.length > 0 && (
-        <div className={styles.imagesContainer}>
-          {images.map((item) => (
-            <Card
-              key={item.id}
-              src={item.src.large}
-              alt={item.alt}
-              photographer={item.photographer}
-              onClick={() => handleFavourites(item.id)}
-              isClicked={likedPhotos.includes(item.id)}
-            />
-          ))}
-        </div>
-      )}
-      {/*TODO create nice loader*/}
-      {isLoading && <p className={styles.loader}>Loading...</p>}
+    <>
+      <div className={styles.pageWrapper}>
+        {images.length > 0 && (
+          <div className={styles.imagesContainer}>
+            {images.map((item) => (
+              <Card
+                key={item.id}
+                src={item.src.large}
+                alt={item.alt}
+                photographer={item.photographer}
+                onClick={() => handleFavourites(item.id)}
+                isClicked={likedPhotos.includes(item.id)}
+              />
+            ))}
+          </div>
+        )}
+
+        {isLoading && <Loader />}
+
+        {/*TODO add Load more button as a backup*/}
+      </div>
       <div ref={bottom}></div>
-      {/*TODO add Load more button as a backup*/}
-    </div>
+    </>
   );
 };
 
