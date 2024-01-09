@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { FAVORITES_KEY } from '../const/favoritesKey';
-
-const useFavorites = () => {
+const useFavorites = (storageKey: string) => {
   const [likedPhotos, setLikedPhotos] = useState<number[]>([]);
 
   const handleFavorites = (itemId: number) => {
@@ -14,7 +12,8 @@ const useFavorites = () => {
   };
 
   useEffect(() => {
-    window.localStorage.setItem(FAVORITES_KEY, JSON.stringify(likedPhotos));
+    window.localStorage.setItem(storageKey, JSON.stringify(likedPhotos));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [likedPhotos]);
 
   return { handleFavorites, likedPhotos, setLikedPhotos };
