@@ -1,51 +1,22 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 import Card from '../components/card/Card';
+import { FAVORITES_KEY } from '../consts/favoritesKey';
 import Loader from '../components/loader/Loader';
-import { PexelsImage } from '../types/images';
-import { getImagesPaginated } from '../api/images';
 import styles from './Home.module.scss';
+import useFavorites from '../utils/useFavorites';
+import useFetch from '../utils/useFetch';
 
 const Home = () => {
-  const FAVOURITES_KEY = import.meta.env.VITE_FAVOURITES_KEY;
-  const [images, setImages] = useState<PexelsImage[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [page, setPage] = useState(1);
-  const [likedPhotos, setLikedPhotos] = useState<number[]>([]);
-  const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const { errorMsg, isLoading, images, page, getImages, setPage } = useFetch();
+
+  const { handleFavorites, likedPhotos } = useFavorites(FAVORITES_KEY);
 
   const prevPage = useRef(0);
   const bottom = useRef<HTMLDivElement | null>(null);
   const initialized = useRef(false);
-
-  const handleFavourites = (itemId: number) => {
-    if (likedPhotos.includes(itemId)) {
-      setLikedPhotos(likedPhotos.filter((id) => id !== itemId));
-      return;
-    }
-    setLikedPhotos((prevLikedPhotos) => [...prevLikedPhotos, itemId]);
-  };
-
-  const getImages = async () => {
-    try {
-      setIsLoading(true);
-      const photos = await getImagesPaginated(page);
-      const filteredPhotos = photos.filter((photo) => !images.some((image) => image.id === photo.id));
-      setImages((currentItems) => [...currentItems, ...filteredPhotos]);
-    } catch (err) {
-      if (page > 1) {
-        setPage((currentPage) => currentPage - 1);
-      }
-      setErrorMsg('Could not load images');
-      setTimeout(() => {
-        setErrorMsg(null);
-      }, 3000);
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
   useEffect(() => {
     if (!initialized.current) {
@@ -60,9 +31,6 @@ const Home = () => {
           observer.observe(bottom.current);
         }
       };
-
-      const data = window.localStorage.getItem(FAVOURITES_KEY);
-      if (data !== null) setLikedPhotos(JSON.parse(data));
       getImagesAndObserve();
       initialized.current = true;
     }
@@ -75,10 +43,6 @@ const Home = () => {
     prevPage.current = page;
   }, [page]);
 
-  useEffect(() => {
-    window.localStorage.setItem(FAVOURITES_KEY, JSON.stringify(likedPhotos));
-  }, [likedPhotos]);
-
   return (
     <>
       <div className={styles.pageWrapper}>
@@ -90,7 +54,7 @@ const Home = () => {
                 src={item.src.large}
                 alt={item.alt}
                 photographer={item.photographer}
-                onClick={() => handleFavourites(item.id)}
+                onClick={() => handleFavorites(item.id)}
                 isClicked={likedPhotos.includes(item.id)}
                 tabIndex={index}
               />
