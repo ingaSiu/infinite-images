@@ -18,33 +18,6 @@ const Home = () => {
   const bottom = useRef<HTMLDivElement | null>(null);
   const initialized = useRef(false);
 
-  // const handleFavourites = (itemId: number) => {
-  //   if (likedPhotos.includes(itemId)) {
-  //     setLikedPhotos(likedPhotos.filter((id) => id !== itemId));
-  //     return;
-  //   }
-  //   setLikedPhotos((prevLikedPhotos) => [...prevLikedPhotos, itemId]);
-  // };
-
-  // const getImages = async () => {
-  //   try {
-  //     setIsLoading(true);
-  //     const photos = await getImagesPaginated(page);
-  //     const filteredPhotos = photos.filter((photo) => !images.some((image) => image.id === photo.id));
-  //     setImages((currentItems) => [...currentItems, ...filteredPhotos]);
-  //   } catch (err) {
-  //     if (page > 1) {
-  //       setPage((currentPage) => currentPage - 1);
-  //     }
-  //     setErrorMsg('Could not load images');
-  //     setTimeout(() => {
-  //       setErrorMsg(null);
-  //     }, 3000);
-  //   } finally {
-  //     setIsLoading(false);
-  //   }
-  // };
-
   useEffect(() => {
     if (!initialized.current) {
       const getImagesAndObserve = async () => {
@@ -58,10 +31,6 @@ const Home = () => {
           observer.observe(bottom.current);
         }
       };
-
-      // ar jie issikelia??
-      // const data = window.localStorage.getItem(FAVORITES_KEY);
-      // if (data !== null) setLikedPhotos(JSON.parse(data));
       getImagesAndObserve();
       initialized.current = true;
     }
