@@ -3,13 +3,15 @@
 import { useEffect, useRef } from 'react';
 
 import Card from '../components/card/Card';
-import { FAVORITES_KEY } from '../consts/favoritesKey';
 import Loader from '../components/loader/Loader';
 import styles from './Home.module.scss';
 import useFavorites from '../utils/useFavorites';
 import useFetch from '../utils/useFetch';
 
+//import { FAVORITES_KEY } from '../consts/favoritesKey';
+
 const Home = () => {
+  const FAVORITES_KEY = import.meta.env.VITE_FAVOURITES_KEY;
   const { errorMsg, isLoading, images, page, getImages, setPage } = useFetch();
 
   const { handleFavorites, likedPhotos } = useFavorites(FAVORITES_KEY);
