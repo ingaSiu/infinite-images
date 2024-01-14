@@ -1,4 +1,4 @@
-# Front-end Homework Assignment Vinted
+# Image viewing website 
 
 Web application with infinite-scroll that allows user to browse items and favourite them 
 
