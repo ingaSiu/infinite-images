@@ -2,7 +2,7 @@
 
 Web application with infinite-scroll that allows user to browse items and favourite them 
 
-:point_right: [Live Demo](https://ingasiu.github.io/fe-vinted/)
+:point_right: [Live Demo](https://ingasiu.github.io/infinite-images/)
 
 Developed by Inga Siudikienė
 
