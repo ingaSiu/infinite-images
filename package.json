@@ -1,5 +1,5 @@
 {
-  "name": "fe-vinted",
+  "name": "infinite-images",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -30,4 +30,3 @@
     "vite": "^4.4.5"
   }
 }
-
