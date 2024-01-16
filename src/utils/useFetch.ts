@@ -1,5 +1,6 @@
+import { getImagesPaginated, searchImagesPaginated } from '../api/images';
+
 import { PexelsImage } from '../types/images';
-import { getImagesPaginated } from '../api/images';
 import { useState } from 'react';
 
 const useFetch = () => {
@@ -8,12 +9,19 @@ const useFetch = () => {
   const [images, setImages] = useState<PexelsImage[]>([]);
   const [page, setPage] = useState(1);
 
-  const getImages = async () => {
+  const getImages = async (query: string | null = null) => {
     try {
       setIsLoading(true);
-      const photos = await getImagesPaginated(page);
-      const filteredPhotos = photos.filter((photo) => !images.some((image) => image.id === photo.id));
-      setImages((currentItems) => [...currentItems, ...filteredPhotos]);
+      if (query === null) {
+        const photos = await getImagesPaginated(page);
+        const filteredPhotos = photos.filter((photo) => !images.some((image) => image.id === photo.id));
+        setImages((currentItems) => [...currentItems, ...filteredPhotos]);
+      } else {
+        const photos = await searchImagesPaginated(query, page);
+        const filteredPhotos = photos.filter((photo) => !images.some((image) => image.id === photo.id));
+        setImages(filteredPhotos);
+        //TODO: solve search pagination bug
+      }
     } catch (err) {
       if (page > 1) {
         setPage((currentPage) => currentPage - 1);
