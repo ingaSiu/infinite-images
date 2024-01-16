@@ -5,6 +5,7 @@ import { useEffect, useRef } from 'react';
 import Card from '../components/card/Card';
 import { FAVORITES_KEY } from '../consts/favoritesKey';
 import Loader from '../components/loader/Loader';
+import Nav from '../components/nav/Nav';
 import styles from './Home.module.scss';
 import useFavorites from '../utils/useFavorites';
 import useFetch from '../utils/useFetch';
@@ -43,8 +44,14 @@ const Home = () => {
     prevPage.current = page;
   }, [page]);
 
+  const onSearch = (query: string | null) => {
+    console.log('onsearch in home called');
+    getImages(query);
+  };
+
   return (
     <>
+      <Nav onSearch={onSearch} />
       <div className={styles.pageWrapper}>
         {images.length > 0 && (
           <div className={styles.imagesContainer}>
