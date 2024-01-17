@@ -1,18 +1,27 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import SearchInput from './SearchInput';
+import useDebounce from '../../utils/useDebounce';
 
 export type Props = {
-  onSearch: (query: string | null) => void;
+  onSearch: (query: string) => void;
 };
 
 const SearchBar = ({ onSearch }: Props) => {
   const [search, setSearch] = useState('');
-  console.log(search);
+  const debouncedSearch = useDebounce(search, 1000);
+  const wasUsed = useRef(false);
+
   useEffect(() => {
-    console.log('onsearch called in useffect in search bar');
-    onSearch(search);
-  }, [search]);
+    if (!wasUsed.current && debouncedSearch !== '') {
+      wasUsed.current = true;
+    }
+    if (wasUsed.current) {
+      console.log('onsearch called in useffect in search bar');
+      onSearch(debouncedSearch);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [debouncedSearch]);
   return <SearchInput value={search} setValue={setSearch} />;
 };
 
