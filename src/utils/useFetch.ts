@@ -6,21 +6,29 @@ import { useState } from 'react';
 const useFetch = () => {
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [prevQuery, setPrevQuery] = useState('');
   const [images, setImages] = useState<PexelsImage[]>([]);
   const [page, setPage] = useState(1);
 
-  const getImages = async (query: string | null = null) => {
+  const getImages = async (query: string = '', onlyPageUpdate: boolean = false) => {
+    if (onlyPageUpdate) {
+      query = prevQuery;
+    }
     try {
       setIsLoading(true);
-      if (query === null) {
-        const photos = await getImagesPaginated(page);
-        const filteredPhotos = photos.filter((photo) => !images.some((image) => image.id === photo.id));
-        setImages((currentItems) => [...currentItems, ...filteredPhotos]);
-      } else {
-        const photos = await searchImagesPaginated(query, page);
-        const filteredPhotos = photos.filter((photo) => !images.some((image) => image.id === photo.id));
+      //bad solution, should compare previous string. what if other search is done. it should reset page and results
+      const isQueryChanged = prevQuery !== query;
+      const photos =
+        query === ''
+          ? await getImagesPaginated(isQueryChanged ? 1 : page)
+          : await searchImagesPaginated(query, isQueryChanged ? 1 : page);
+      const filteredPhotos = photos.filter((photo) => !images.some((image) => image.id === photo.id));
+      if (isQueryChanged) {
+        setPage(1);
         setImages(filteredPhotos);
-        //TODO: solve search pagination bug
+        setPrevQuery(query);
+      } else {
+        setImages((currentItems) => [...currentItems, ...filteredPhotos]);
       }
     } catch (err) {
       if (page > 1) {

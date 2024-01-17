@@ -32,6 +32,7 @@ const Home = () => {
           observer.observe(bottom.current);
         }
       };
+      console.log('initial useffect');
       getImagesAndObserve();
       initialized.current = true;
     }
@@ -39,13 +40,15 @@ const Home = () => {
 
   useEffect(() => {
     if (page > 1 && prevPage.current < page) {
+      console.log('useeffect for pages');
       getImages();
     }
     prevPage.current = page;
   }, [page]);
 
-  const onSearch = (query: string | null) => {
+  const onSearch = (query: string) => {
     console.log('onsearch in home called');
+    console.log(query);
     getImages(query);
   };
 
