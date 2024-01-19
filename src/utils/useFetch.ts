@@ -10,13 +10,20 @@ const useFetch = () => {
   const [images, setImages] = useState<PexelsImage[]>([]);
   const [page, setPage] = useState(1);
 
+  const getNewImages = async (query: string = '') => {
+    return getImages(query, false);
+  };
+
+  const getImagesNextPage = async () => {
+    return getImages('', true);
+  };
+
   const getImages = async (query: string = '', onlyPageUpdate: boolean = false) => {
     if (onlyPageUpdate) {
       query = prevQuery;
     }
     try {
       setIsLoading(true);
-      //bad solution, should compare previous string. what if other search is done. it should reset page and results
       const isQueryChanged = prevQuery !== query;
       const photos =
         query === ''
@@ -43,7 +50,7 @@ const useFetch = () => {
     }
   };
 
-  return { errorMsg, isLoading, images, page, getImages, setPage };
+  return { errorMsg, isLoading, images, page, getNewImages, getImagesNextPage, setPage };
 };
 
 export default useFetch;
