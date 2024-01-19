@@ -11,7 +11,7 @@ import useFavorites from '../utils/useFavorites';
 import useFetch from '../utils/useFetch';
 
 const Home = () => {
-  const { errorMsg, isLoading, images, page, getImages, setPage } = useFetch();
+  const { errorMsg, isLoading, images, page, getNewImages, getImagesNextPage, setPage } = useFetch();
 
   const { handleFavorites, likedPhotos } = useFavorites(FAVORITES_KEY);
 
@@ -22,7 +22,7 @@ const Home = () => {
   useEffect(() => {
     if (!initialized.current) {
       const getImagesAndObserve = async () => {
-        await getImages();
+        await getNewImages();
         const observer = new IntersectionObserver((entries) => {
           if (entries[0].isIntersecting) {
             setPage((currentPage) => currentPage + 1);
@@ -41,7 +41,7 @@ const Home = () => {
   useEffect(() => {
     if (page > 1 && prevPage.current < page) {
       console.log('useeffect for pages');
-      getImages();
+      getImagesNextPage();
     }
     prevPage.current = page;
   }, [page]);
@@ -49,7 +49,7 @@ const Home = () => {
   const onSearch = (query: string) => {
     console.log('onsearch in home called');
     console.log(query);
-    getImages(query);
+    getNewImages(query);
   };
 
   return (
