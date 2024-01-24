@@ -1,15 +1,34 @@
+@use '../../scss/colors' as c;
+
 .navContainer {
-  border-bottom: 2px solid violet;
+  border-bottom: 1px solid c.$colorAccentGrey;
   padding: 8px 4px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+
+  h2 {
+    display: none;
+  }
 
   @media only screen and (min-width: 480px) {
+    justify-content: space-around;
+
+    h2 {
+      display: block;
+    }
   }
 
   @media only screen and (min-width: 728px) {
+    justify-content: space-around;
+    h2 {
+      display: block;
+    }
   }
 
   @media only screen and (min-width: 1200px) {
+    justify-content: space-around;
+    h2 {
+      display: block;
+    }
   }
 }
