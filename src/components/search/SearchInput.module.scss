@@ -1,1 +1,19 @@
+@use '../../scss/colors' as c;
 
+.searchWrapper {
+  position: relative;
+
+  svg {
+    position: absolute;
+    left: 2px;
+    top: 6px;
+    font-size: 20px;
+  }
+  input {
+    padding: 8px 22px;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    box-shadow: 3px 3px c.$colorActiveElement;
+  }
+}
