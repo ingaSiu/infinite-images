@@ -5,12 +5,13 @@ import { useEffect, useRef } from 'react';
 import Card from '../components/card/Card';
 import { FAVORITES_KEY } from '../consts/favoritesKey';
 import Loader from '../components/loader/Loader';
+import Nav from '../components/nav/Nav';
 import styles from './Home.module.scss';
 import useFavorites from '../utils/useFavorites';
 import useFetch from '../utils/useFetch';
 
 const Home = () => {
-  const { errorMsg, isLoading, images, page, getImages, setPage } = useFetch();
+  const { errorMsg, isLoading, images, page, getNewImages, getImagesNextPage, setPage } = useFetch();
 
   const { handleFavorites, likedPhotos } = useFavorites(FAVORITES_KEY);
 
@@ -21,7 +22,7 @@ const Home = () => {
   useEffect(() => {
     if (!initialized.current) {
       const getImagesAndObserve = async () => {
-        await getImages();
+        await getNewImages();
         const observer = new IntersectionObserver((entries) => {
           if (entries[0].isIntersecting) {
             setPage((currentPage) => currentPage + 1);
@@ -31,6 +32,7 @@ const Home = () => {
           observer.observe(bottom.current);
         }
       };
+      console.log('initial useffect');
       getImagesAndObserve();
       initialized.current = true;
     }
@@ -38,13 +40,21 @@ const Home = () => {
 
   useEffect(() => {
     if (page > 1 && prevPage.current < page) {
-      getImages();
+      console.log('useeffect for pages');
+      getImagesNextPage();
     }
     prevPage.current = page;
   }, [page]);
 
+  const onSearch = (query: string) => {
+    console.log('onsearch in home called');
+    console.log(query);
+    getNewImages(query);
+  };
+
   return (
     <>
+      <Nav onSearch={onSearch} />
       <div className={styles.pageWrapper}>
         {images.length > 0 && (
           <div className={styles.imagesContainer}>
