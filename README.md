@@ -1,6 +1,6 @@
 # Image viewing website 
 
-Web application with infinite-scroll that allows user to browse items and favourite them 
+Web application with infinite-scroll that allows user to search, browse through items and favourite them 
 
 :point_right: [Live Demo](https://ingasiu.github.io/infinite-images/)
 
