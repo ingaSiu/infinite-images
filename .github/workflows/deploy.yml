@@ -42,4 +42,4 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: deploy
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/deploy-pages@v4
