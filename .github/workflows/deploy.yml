@@ -20,15 +20,16 @@ jobs:
         run: |
           yarn install
           yarn predeploy
-      - name: listfiles
-        run: |
-          ls
 
       - name: upload
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-pages-artifact@v2
         with:
           name: github-pages
           path: github-pages
+
+      - name: listfiles
+        run: |
+          ls
 
   deploy:
     needs: build
