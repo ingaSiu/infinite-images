@@ -18,6 +18,7 @@ jobs:
 
       - name: build
         run: |
+          yarn install
           yarn predeploy
   deploy:
     permissions:
