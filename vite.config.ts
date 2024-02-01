@@ -6,6 +6,6 @@ export default defineConfig({
   base: '/infinite-images',
   plugins: [react()],
   build: {
-    outDir: '../github-pages',
+    outDir: './github-pages',
   },
 });
