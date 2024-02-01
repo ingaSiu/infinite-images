@@ -1,7 +1,7 @@
 @use '../../scss/colors' as c;
 
 .navContainer {
-  border-bottom: 1px solid c.$colorBlack;
+  border-bottom: 1px solid c.$colorAccentGrey;
   padding: 8px 4px;
   display: flex;
   justify-content: center;
