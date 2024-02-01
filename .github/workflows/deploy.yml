@@ -25,11 +25,11 @@ jobs:
         uses: actions/upload-pages-artifact@v2
         with:
           name: github-pages
-          path: github-pages
+          path: github-pages/*
 
       - name: listfiles
         run: |
-          ls
+          ls github-pages
 
   deploy:
     needs: build
