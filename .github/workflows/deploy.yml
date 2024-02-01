@@ -8,7 +8,7 @@ on:
     branches:
       - main
 jobs:
-  build-and-deploy:
+  build:
     permissions:
       contents: write
     runs-on: ubuntu-latest
@@ -20,4 +20,23 @@ jobs:
         run: |
           yarn install
           yarn predeploy
-          yarn deploy
+
+      - name: upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: github-pages
+          path: ./github-pages
+
+  deploy:
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    runs-on: ubuntu-latest
+    environment:
+      # environment created automatically by GitHub
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: deploy
+        uses: actions/deploy-pages@v4

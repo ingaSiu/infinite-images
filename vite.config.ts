@@ -5,4 +5,7 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   base: '/infinite-images',
   plugins: [react()],
+  build: {
+    outDir: '../github-pages',
+  },
 });
