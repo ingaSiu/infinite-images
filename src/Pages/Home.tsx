@@ -44,9 +44,7 @@ const Home = () => {
     prevPage.current = page;
   }, [page]);
 
-  const onSearch = (query: string) => {
-    getNewImages(query);
-  };
+  const onSearch = (query: string) => getNewImages(query);
 
   return (
     <>
