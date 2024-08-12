@@ -17,7 +17,6 @@ const SearchBar = ({ onSearch }: Props) => {
       wasUsed.current = true;
     }
     if (wasUsed.current) {
-      console.log('onsearch called in useffect in search bar');
       onSearch(debouncedSearch);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
