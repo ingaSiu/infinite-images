@@ -7,7 +7,7 @@ type ButtonProps = {
 };
 
 const Button = ({ children, onClick, isClicked }: ButtonProps) => (
-  <button className={`${styles.btn} ${isClicked ? styles.btnClicked : styles.btn}`} onClick={onClick}>
+  <button className={`${styles.btn} ${isClicked ? styles.btnClicked : ''}`} onClick={onClick}>
     {children}
   </button>
 );
