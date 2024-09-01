@@ -1,4 +1,5 @@
 import { PexelsImage } from '../types/images';
+import axios from 'axios';
 
 const BASE_URL = 'https://api.pexels.com/v1/';
 
@@ -17,14 +18,19 @@ export const searchImagesPaginated = async (
 };
 
 const getPhotos = async (fetchUrl: string): Promise<PexelsImage[]> => {
-  const response = await fetch(fetchUrl, {
-    headers: {
-      Authorization: KEY,
-    },
-  });
-  if (!response.ok) {
-    throw new Error(`HTTP Error: ${response.status}`);
+  try {
+    const response = await axios.get(fetchUrl, {
+      headers: {
+        Authorization: KEY,
+      },
+    });
+
+    return response.data.photos;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      throw new Error(`HTTP Error: ${error.response?.status || error.message}`);
+    } else {
+      throw new Error(`Unexpected Error: ${error}`);
+    }
   }
-  const data = await response.json();
-  return data.photos;
 };
