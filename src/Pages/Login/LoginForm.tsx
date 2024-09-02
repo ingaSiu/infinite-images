@@ -12,7 +12,7 @@ const schema = yup.object().shape({
   password: yup.string().required('Password is required.'),
 });
 
-type FormData = yup.InferType<typeof schema>;
+type LoginData = yup.InferType<typeof schema>;
 
 const LoginForm = () => {
   const {
@@ -20,9 +20,28 @@ const LoginForm = () => {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<FormData>({ resolver: yupResolver(schema) });
+  } = useForm<LoginData>({ resolver: yupResolver(schema) });
 
-  const onSubmit = () => {};
+  const onSubmit = async (data: LoginData) => {
+    const { email, password } = data;
+
+    try {
+      await axios.post(
+        `http://localhost:5000/api/users/auth`,
+        { email, password },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        },
+      );
+      reset();
+      alert('Logged in succesfully');
+    } catch (error) {
+      console.error(error);
+      alert('Login failed');
+    }
+  };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
