@@ -47,11 +47,13 @@ const LoginForm = () => {
       <div>
         <label htmlFor="email">User Email</label>
         <input type="email" {...register('email')} />
+        {errors.email && <p>{errors.email.message}</p>}
       </div>
 
       <div>
         <label htmlFor="password">Password</label>
         <input type="password" {...register('password')} />
+        {errors.email && <p>{errors.email.message}</p>}
       </div>
 
       <button>Login</button>
