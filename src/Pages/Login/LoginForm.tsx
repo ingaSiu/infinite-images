@@ -1,12 +1,10 @@
 import * as yup from 'yup';
 
 import { BASE_URL } from '../../api/baseApi';
+import { EMAIL_REGEX } from '../../utils/regex';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-
-const EMAIL_REGEX =
-  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()\\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 const schema = yup.object().shape({
   email: yup.string().required('Email is required').matches(EMAIL_REGEX, 'Invalid email address'),
