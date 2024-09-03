@@ -1,0 +1,33 @@
+.container {
+  margin-left: 100px;
+  margin-top: 100px;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    font-size: large;
+    padding-bottom: 4px;
+  }
+
+  input {
+    padding: 4px 6px;
+    width: 50%;
+    margin-bottom: 8px;
+  }
+}
+
+.errorMsg {
+  color: red;
+}
+
+.registerBtn {
+  padding: 8px 6px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: blueviolet;
+  }
+}
