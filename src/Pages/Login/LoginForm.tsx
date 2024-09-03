@@ -28,7 +28,7 @@ const LoginForm = () => {
 
     try {
       await axios.post(
-        `${BASE_URL}api/users/auth`,
+        `${BASE_URL}users/auth`,
         { email, password },
         {
           headers: {
