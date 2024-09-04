@@ -10,7 +10,7 @@ const SearchInput = ({ value, setValue }: SearchInputProps) => {
   return (
     <div className={styles.searchWrapper}>
       <AiOutlineSearch />
-      <input value={value} onChange={(e) => setValue(e.target.value)} />
+      <input value={value} onChange={(e) => setValue(e.target.value)} placeholder="Search for images" />
     </div>
   );
 };
