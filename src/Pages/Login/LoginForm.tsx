@@ -1,6 +1,7 @@
 import * as yup from 'yup';
 
 import { BASE_URL } from '../../api/baseApi';
+import Button from '../../components/button/Button';
 import { EMAIL_REGEX } from '../../utils/regex';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
@@ -55,7 +56,7 @@ const LoginForm = () => {
         {errors.email && <p>{errors.email.message}</p>}
       </div>
 
-      <button>Login</button>
+      <Button variant={true}>Login</Button>
     </form>
   );
 };

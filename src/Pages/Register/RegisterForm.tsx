@@ -1,6 +1,7 @@
 import * as yup from 'yup';
 
 import { BASE_URL } from '../../api/baseApi';
+import Button from '../../components/button/Button';
 import { EMAIL_REGEX } from '../../utils/regex';
 import axios from 'axios';
 import styles from './Register.module.scss';
@@ -72,9 +73,7 @@ const RegisterForm = () => {
         {errors.confirmPassword && <p className={styles.errorMsg}>{errors.confirmPassword.message}</p>}
       </div>
 
-      <button className={styles.registerBtn} type="submit">
-        Register
-      </button>
+      <Button variant={true}>Register</Button>
     </form>
   );
 };
