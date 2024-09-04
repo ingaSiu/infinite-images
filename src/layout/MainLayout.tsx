@@ -1,3 +1,4 @@
+import Nav from '../components/nav/Nav';
 import { ReactNode } from 'react';
 
 type MainLayoutProps = {
@@ -7,6 +8,7 @@ type MainLayoutProps = {
 const MainLayout = ({ children }: MainLayoutProps) => {
   return (
     <>
+      <Nav />
       <div>{children}</div>
     </>
   );

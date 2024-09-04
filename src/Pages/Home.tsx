@@ -6,7 +6,6 @@ import Card from '../components/card/Card';
 import { FAVORITES_KEY } from '../consts/favoritesKey';
 import Hero from '../components/hero/Hero';
 import Loader from '../components/loader/Loader';
-import Nav from '../components/nav/Nav';
 import styles from './Home.module.scss';
 import useFavorites from '../utils/useFavorites';
 import useFetch from '../utils/useFetch';
@@ -49,7 +48,6 @@ const Home = () => {
 
   return (
     <>
-      <Nav />
       <Hero onSearch={onSearch} />
       <div className={styles.pageWrapper}>
         {images.length > 0 && (
