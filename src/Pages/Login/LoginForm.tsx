@@ -3,9 +3,11 @@ import * as yup from 'yup';
 import { BASE_URL } from '../../api/baseApi';
 import Button from '../../components/button/Button';
 import { EMAIL_REGEX } from '../../utils/regex';
+import { HOME_PATH } from '../../routes/consts';
 import axios from 'axios';
 import styles from './Login.module.scss';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 const schema = yup.object().shape({
@@ -16,6 +18,8 @@ const schema = yup.object().shape({
 type LoginData = yup.InferType<typeof schema>;
 
 const LoginForm = () => {
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -37,7 +41,7 @@ const LoginForm = () => {
         },
       );
       reset();
-      alert('Logged in succesfully');
+      navigate(HOME_PATH);
     } catch (error) {
       console.error(error);
       alert('Login failed');
