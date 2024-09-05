@@ -4,6 +4,7 @@ import { BASE_URL } from '../../api/baseApi';
 import Button from '../../components/button/Button';
 import { EMAIL_REGEX } from '../../utils/regex';
 import axios from 'axios';
+import styles from './Login.module.scss';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
@@ -44,16 +45,16 @@ const LoginForm = () => {
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div>
-        <label htmlFor="email">User Email</label>
-        <input type="email" {...register('email')} />
+      <div className={styles.inputWrapper}>
+        {/* <label htmlFor="email">User Email</label> */}
+        <input type="email" {...register('email')} placeholder="Email" />
         {errors.email && <p>{errors.email.message}</p>}
       </div>
 
-      <div>
-        <label htmlFor="password">Password</label>
-        <input type="password" {...register('password')} />
-        {errors.email && <p>{errors.email.message}</p>}
+      <div className={styles.inputWrapper}>
+        {/* <label htmlFor="password">Password</label> */}
+        <input type="password" {...register('password')} placeholder="Password" />
+        {errors.password && <p>{errors.password.message}</p>}
       </div>
 
       <Button variant={true}>Login</Button>
