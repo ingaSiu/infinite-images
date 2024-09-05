@@ -10,7 +10,8 @@
   font-weight: 600;
   outline: 0 solid transparent;
   font-size: 14px;
-  &:hover {
+  &:hover,
+  &:focus {
     cursor: pointer;
   }
 }
@@ -25,7 +26,8 @@
   outline: none;
   font-size: 14px;
 
-  &:hover {
+  &:hover,
+  &:focus {
     cursor: pointer;
     background-color: pink;
     transition: all 0.5s;
