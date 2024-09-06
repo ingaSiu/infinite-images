@@ -17,7 +17,7 @@
 }
 
 .secondary {
-  background-color: lightsalmon;
+  background-color: c.$colorAccentOrange;
   text-align: center;
   padding: 8px 26px;
   border: none;
@@ -29,7 +29,7 @@
   &:hover,
   &:focus {
     cursor: pointer;
-    background-color: pink;
+    background-color: c.$colorHover;
     transition: all 0.5s;
   }
 }
