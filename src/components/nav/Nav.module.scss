@@ -4,31 +4,44 @@
   border-bottom: 1px solid c.$colorAccentGrey;
   padding: 8px 4px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
 
-  h2 {
-    display: none;
-  }
+  .left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    cursor: pointer;
 
-  @media only screen and (min-width: 480px) {
-    justify-content: space-around;
-
+    img {
+      width: 60px;
+    }
     h2 {
-      display: block;
+      display: none;
+    }
+
+    @media only screen and (min-width: 480px) {
+      justify-content: space-around;
+    }
+
+    @media only screen and (min-width: 728px) {
+      justify-content: space-around;
+      h2 {
+        display: block;
+      }
+    }
+
+    @media only screen and (min-width: 1200px) {
+      justify-content: space-around;
+      h2 {
+        display: block;
+      }
     }
   }
 
-  @media only screen and (min-width: 728px) {
-    justify-content: space-around;
-    h2 {
-      display: block;
-    }
-  }
-
-  @media only screen and (min-width: 1200px) {
-    justify-content: space-around;
-    h2 {
-      display: block;
-    }
+  .right {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
   }
 }

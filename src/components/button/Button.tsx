@@ -4,10 +4,14 @@ type ButtonProps = {
   children?: React.ReactNode;
   onClick?: (event: React.SyntheticEvent) => void;
   isClicked?: boolean;
+  variant?: boolean;
 };
 
-const Button = ({ children, onClick, isClicked }: ButtonProps) => (
-  <button className={`${styles.btn} ${isClicked ? styles.btnClicked : ''}`} onClick={onClick}>
+const Button = ({ children, onClick, isClicked, variant }: ButtonProps) => (
+  <button
+    className={`${variant ? styles.secondary : styles.primary} ${isClicked ? styles.btnClicked : ''}`}
+    onClick={onClick}
+  >
     {children}
   </button>
 );
