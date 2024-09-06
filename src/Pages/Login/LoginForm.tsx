@@ -52,13 +52,13 @@ const LoginForm = () => {
       <div className={styles.inputWrapper}>
         {/* <label htmlFor="email">User Email</label> */}
         <input type="email" {...register('email')} placeholder="Email" />
-        {errors.email && <p>{errors.email.message}</p>}
+        {errors.email && <p className={styles.errorMsg}>{errors.email.message}</p>}
       </div>
 
       <div className={styles.inputWrapper}>
         {/* <label htmlFor="password">Password</label> */}
         <input type="password" {...register('password')} placeholder="Password" />
-        {errors.password && <p>{errors.password.message}</p>}
+        {errors.password && <p className={styles.errorMsg}>{errors.password.message}</p>}
       </div>
 
       <Button variant={true}>Login</Button>

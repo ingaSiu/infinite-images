@@ -6,7 +6,7 @@ const Login = () => {
     <div className={styles.wrapper}>
       <h1>Login Here!</h1>
       <div className={styles.container}>
-        <img src="./cat_login.png" alt="cat with red baloon" />
+        <img src="./cat_login.png" alt="sitting cat with heart above its head" />
         <LoginForm />
       </div>
     </div>
