@@ -6,7 +6,7 @@ const Register = () => {
     <div className={styles.container}>
       <h1>Create Account</h1>
       <div className={styles.formWrapper}>
-        <img src="./cat_register.jpg" alt="sitting cat" />
+        <img src="./cat_register.png" alt="sitting cat" />
         <RegisterForm />
       </div>
     </div>
