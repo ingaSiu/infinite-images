@@ -3,7 +3,7 @@ import * as yup from 'yup';
 import { BASE_URL } from '../../api/baseApi';
 import Button from '../../components/button/Button';
 import { EMAIL_REGEX } from '../../utils/regex';
-import { HOME_PATH } from '../../routes/consts';
+import { LOGIN_PATH } from '../../routes/consts';
 import axios from 'axios';
 import styles from './Register.module.scss';
 import { useForm } from 'react-hook-form';
@@ -44,7 +44,7 @@ const RegisterForm = () => {
         },
       );
 
-      navigate(HOME_PATH);
+      navigate(LOGIN_PATH);
     } catch (error) {
       console.error(error);
       alert('Registration failed. Please try again');
