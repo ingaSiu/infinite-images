@@ -1,4 +1,4 @@
 export type Route = {
-  path: '/' | '/login' | '/register' | 'user';
+  path: '/' | '/login' | '/register' | '/users/profile/:id';
   Component: () => JSX.Element;
 };
