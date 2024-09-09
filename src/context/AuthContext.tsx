@@ -1,6 +1,7 @@
 import { ReactNode, createContext, useEffect, useState } from 'react';
 
 import { BASE_URL } from '../api/baseApi';
+import { LOGIN_PATH } from '../routes/consts';
 import httpClient from '../api/httpClient';
 import { useNavigate } from 'react-router-dom';
 
@@ -14,7 +15,7 @@ type User = {
 type AuthContextProps = {
   user: User | null;
   login: (email: string, password: string) => Promise<void>;
-  //logout: () => Promise<void>;
+  logout: () => void;
   //favorites: string[]; // or whatever type your favorites are
   isAuthenticated: boolean;
 };
@@ -65,13 +66,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  //TODO on initial load it is null and causes problems in private routes- instant redirect
-  //TODO fixed with loading
+  const logout = () => {
+    localStorage.removeItem('isAuthenticated');
+    setUser(null);
+    navigate(LOGIN_PATH);
+  };
+
   const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
 
-  console.log('NOT AUTHENTICATED???');
-  console.log(user);
-  console.log(isAuthenticated);
-
-  return <AuthContext.Provider value={{ user, login, isAuthenticated }}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={{ user, login, isAuthenticated, logout }}>{children}</AuthContext.Provider>;
 };
