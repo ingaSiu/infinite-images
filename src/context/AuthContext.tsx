@@ -32,28 +32,29 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   //if it exists, the private route is show, if no then redirected
   //even if user does not have correct jwt then when protected route is opened and backend fetch is done
   //then after 401 response jwt cookie should be deleted and user redirected to login p age
-  useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const { data } = await httpClient.get<User>(`${BASE_URL}users/profile`);
-        setUser(data);
-      } catch (error) {
-        console.log(error);
-        setUser(null);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchProfile();
-  }, []);
+  // useEffect(() => {
+  //   const fetchProfile = async () => {
+  //     try {
+  //       const { data } = await httpClient.get<User>(`${BASE_URL}users/profile`);
+  //       setUser(data);
+  //     } catch (error) {
+  //       console.log(error);
+  //       setUser(null);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+  //   fetchProfile();
+  // }, []);
 
-  if (loading) {
-    return null;
-  }
+  // if (loading) {
+  //   return null;
+  // }
 
   const login = async (email: string, password: string) => {
     try {
       await httpClient.post(`${BASE_URL}users/auth`, { email, password });
+      localStorage.setItem('isAuthenticated', 'true');
       const { data } = await httpClient.get<User>(`${BASE_URL}users/profile`);
       setUser(data);
       console.log(data);
@@ -66,7 +67,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   //TODO on initial load it is null and causes problems in private routes- instant redirect
   //TODO fixed with loading
-  const isAuthenticated = !!user;
+  const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
 
   console.log('NOT AUTHENTICATED???');
   console.log(user);
