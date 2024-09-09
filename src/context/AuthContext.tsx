@@ -24,7 +24,6 @@ export const AuthContext = createContext<AuthContextProps | undefined>(undefined
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
 
   const navigate = useNavigate();
 
@@ -33,24 +32,23 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   //if it exists, the private route is show, if no then redirected
   //even if user does not have correct jwt then when protected route is opened and backend fetch is done
   //then after 401 response jwt cookie should be deleted and user redirected to login p age
-  // useEffect(() => {
-  //   const fetchProfile = async () => {
-  //     try {
-  //       const { data } = await httpClient.get<User>(`${BASE_URL}users/profile`);
-  //       setUser(data);
-  //     } catch (error) {
-  //       console.log(error);
-  //       setUser(null);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-  //   fetchProfile();
-  // }, []);
 
-  // if (loading) {
-  //   return null;
-  // }
+  useEffect(() => {
+    const checkAuth = async () => {
+      const tokenExists = localStorage.getItem('isAuthenticated');
+
+      if (tokenExists) {
+        try {
+          const { data } = await httpClient.get<User>(`${BASE_URL}users/profile`);
+          setUser(data);
+        } catch (error) {
+          console.log(error);
+          logout();
+        }
+      }
+    };
+    checkAuth();
+  }, []);
 
   const login = async (email: string, password: string) => {
     try {
