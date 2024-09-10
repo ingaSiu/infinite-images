@@ -5,6 +5,7 @@ import Button from '../../components/button/Button';
 import { EMAIL_REGEX } from '../../utils/regex';
 import { LOGIN_PATH } from '../../routes/consts';
 import axios from 'axios';
+import httpClient from '../../api/httpClient';
 import styles from './Register.module.scss';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -34,15 +35,7 @@ const RegisterForm = () => {
     const { email, username, password } = data;
 
     try {
-      await axios.post(
-        `${BASE_URL}users/`,
-        { email, username, password },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        },
-      );
+      await httpClient.post(`${BASE_URL}users/`, { email, username, password });
 
       navigate(LOGIN_PATH);
     } catch (error) {
