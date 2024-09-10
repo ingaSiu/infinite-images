@@ -1,0 +1,14 @@
+.container {
+  text-align: center;
+}
+
+.cardsWrapper {
+  display: flex;
+  justify-content: space-around;
+
+  .card {
+    border: 2px solid violet;
+    width: 250px;
+    height: 150px;
+  }
+}
