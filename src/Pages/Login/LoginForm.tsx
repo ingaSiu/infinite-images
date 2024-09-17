@@ -3,9 +3,10 @@ import * as yup from 'yup';
 import { BASE_URL } from '../../api/baseApi';
 import Button from '../../components/button/Button';
 import { EMAIL_REGEX } from '../../utils/regex';
-import { HOME_PATH } from '../../routes/consts';
+import { USER_PATH } from '../../routes/consts';
 import axios from 'axios';
 import styles from './Login.module.scss';
+import { useAuthContext } from '../../hooks/useAuthContext';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -19,7 +20,7 @@ type LoginData = yup.InferType<typeof schema>;
 
 const LoginForm = () => {
   const navigate = useNavigate();
-
+  const { login } = useAuthContext();
   const {
     register,
     handleSubmit,
@@ -31,7 +32,7 @@ const LoginForm = () => {
     const { email, password } = data;
 
     try {
-      await axios.post(
+      /*await axios.post(
         `${BASE_URL}users/auth`,
         { email, password },
         {
@@ -39,9 +40,10 @@ const LoginForm = () => {
             'Content-Type': 'application/json',
           },
         },
-      );
+      );*/
+      login(email, password);
       reset();
-      navigate(HOME_PATH);
+      navigate(USER_PATH);
     } catch (error) {
       console.error(error);
       alert('Login failed');
