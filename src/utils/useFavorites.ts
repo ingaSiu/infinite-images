@@ -14,7 +14,8 @@ const useFavorites = (storageKey: string) => {
       try {
         if (likedPhotos.includes(itemId)) {
           setLikedPhotos(likedPhotos.filter((id) => id !== itemId));
-          return;
+
+          await httpClient.delete(`${BASE_URL}users/favorites/${itemId}`, { withCredentials: true });
         } else {
           setLikedPhotos((prevLikedPhotos) => [...prevLikedPhotos, itemId]);
 
