@@ -9,7 +9,7 @@ const useFavorites = (storageKey: string) => {
   const initialized = useRef(false);
   const { user, isAuthenticated } = useAuthContext();
 
-  const handleFavorites = async (itemId: number, imageUrl: string) => {
+  const handleFavorites = async (itemId: number, alt: string, photographer: string, src: object) => {
     if (isAuthenticated && user) {
       try {
         if (likedPhotos.includes(itemId)) {
@@ -19,7 +19,11 @@ const useFavorites = (storageKey: string) => {
         } else {
           setLikedPhotos((prevLikedPhotos) => [...prevLikedPhotos, itemId]);
 
-          await httpClient.post(`${BASE_URL}users/favorites`, { id: itemId, url: imageUrl }, { withCredentials: true });
+          await httpClient.post(
+            `${BASE_URL}users/favorites`,
+            { id: itemId, alt, photographer, src: JSON.stringify(src) },
+            { withCredentials: true },
+          );
         }
       } catch (error) {
         console.error('Error adding favorite', error);
