@@ -58,7 +58,7 @@ const Home = () => {
                 src={item.src.large}
                 alt={item.alt}
                 photographer={item.photographer}
-                onClick={() => handleFavorites(item.id, item.url)}
+                onClick={() => handleFavorites(item.id, item.alt, item.photographer, item.src)}
                 isClicked={likedPhotos.includes(item.id)}
                 tabIndex={index}
               />
