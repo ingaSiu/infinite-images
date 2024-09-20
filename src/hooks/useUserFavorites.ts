@@ -1,11 +1,26 @@
 import { useEffect, useState } from 'react';
 
 import { BASE_URL } from '../api/baseApi';
-import { PexelsImage } from '../types/images';
 import httpClient from '../api/httpClient';
 
+type FavoritesProp = {
+  alt: string;
+  id: number;
+  photographer: string;
+  src: {
+    original: string;
+    large2x: string;
+    large: string;
+    medium: string;
+    small: string;
+    portrait: string;
+    landscape: string;
+    tiny: string;
+  };
+};
+
 export const useUserFavorites = () => {
-  const [favorites, setFavorites] = useState<PexelsImage[]>([]);
+  const [favorites, setFavorites] = useState<FavoritesProp[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
