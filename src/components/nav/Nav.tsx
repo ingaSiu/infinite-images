@@ -1,4 +1,4 @@
-import { HOME_PATH, LOGIN_PATH, REGISTER_PATH, USER_PATH } from '../../routes/consts';
+import { FAVORITES_PATH, HOME_PATH, LOGIN_PATH, REGISTER_PATH } from '../../routes/consts';
 
 import Button from '../button/Button';
 import styles from './Nav.module.scss';
@@ -17,7 +17,7 @@ const Nav = () => {
 
       {isAuthenticated ? (
         <div className={styles.right}>
-          <span onClick={() => navigate(USER_PATH)} className={styles.user}>
+          <span onClick={() => navigate(FAVORITES_PATH)} className={styles.user}>
             Welcome, {user?.username}
           </span>
           <Button variant={true} onClick={() => logout()}>

@@ -3,7 +3,7 @@ import * as yup from 'yup';
 import { BASE_URL } from '../../api/baseApi';
 import Button from '../../components/button/Button';
 import { EMAIL_REGEX } from '../../utils/regex';
-import { USER_PATH } from '../../routes/consts';
+import { FAVORITES_PATH } from '../../routes/consts';
 import axios from 'axios';
 import styles from './Login.module.scss';
 import { useAuthContext } from '../../hooks/useAuthContext';
@@ -43,7 +43,7 @@ const LoginForm = () => {
       );*/
       login(email, password);
       reset();
-      navigate(USER_PATH);
+      navigate(FAVORITES_PATH);
     } catch (error) {
       console.error(error);
       alert('Login failed');
