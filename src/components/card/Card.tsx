@@ -22,7 +22,7 @@ const Card = ({ alt, src, photographer, onClick, isClicked, tabIndex }: CardProp
 
         <div className={styles.btnWrapper}>
           <Button onClick={onClick} isClicked={isClicked}>
-            Favourite
+            {isClicked ? 'Remove' : 'Favorite'}
           </Button>
         </div>
       </div>
