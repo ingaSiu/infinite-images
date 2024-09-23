@@ -1,5 +1,5 @@
+import { FAVORITES_PATH, USER_PATH, mainLayoutRoutes } from './consts';
 import { Route, Routes as RoutesWrapper } from 'react-router-dom';
-import { USER_PATH, mainLayoutRoutes } from './consts';
 
 import PrivateRoute from '../components/privateRoute/PrivateRoute';
 
@@ -9,7 +9,7 @@ const Routes = () => {
   return (
     <RoutesWrapper>
       {routes.map(({ path, Component }) => {
-        const isPrivateRoute = path === USER_PATH;
+        const isPrivateRoute = path === USER_PATH || path === FAVORITES_PATH;
 
         return (
           <Route
