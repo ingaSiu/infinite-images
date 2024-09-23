@@ -49,7 +49,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       localStorage.setItem('isAuthenticated', 'true');
       const { data } = await httpClient.get<User>(`${BASE_URL}users/profile`);
       setUser(data);
-      navigate('/users/profile/' + data._id);
+      navigate('/profile/' + data._id);
     } catch (error) {
       console.error(error);
       alert('Login failed');

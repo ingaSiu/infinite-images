@@ -8,7 +8,7 @@ import UserPage from '../Pages/UserPage/UserPage';
 export const HOME_PATH = '/';
 export const LOGIN_PATH = '/login';
 export const REGISTER_PATH = '/register';
-export const USER_PATH = '/users/profile/:id';
+export const USER_PATH = '/profile/:id';
 export const FAVORITES_PATH = '/profile/:id/favorites';
 
 export const mainLayoutRoutes = {
