@@ -12,28 +12,31 @@ const useFavorites = (storageKey: string) => {
   const handleFavorites = async (itemId: number, alt: string, photographer: string, src: object) => {
     if (isAuthenticated && user) {
       try {
-        if (likedPhotos.includes(itemId)) {
-          setLikedPhotos(likedPhotos.filter((id) => id !== itemId));
+        setLikedPhotos((prevLikedPhotos) => [...prevLikedPhotos, itemId]);
 
-          await httpClient.delete(`${BASE_URL}users/favorites/${itemId}`, { withCredentials: true });
-        } else {
-          setLikedPhotos((prevLikedPhotos) => [...prevLikedPhotos, itemId]);
-
-          await httpClient.post(
-            `${BASE_URL}users/favorites`,
-            { id: itemId, alt, photographer, src: JSON.stringify(src) },
-            { withCredentials: true },
-          );
-        }
+        await httpClient.post(
+          `${BASE_URL}users/favorites`,
+          { id: itemId, alt, photographer, src: JSON.stringify(src) },
+          { withCredentials: true },
+        );
       } catch (error) {
         console.error('Error adding favorite', error);
       }
     } else {
-      if (likedPhotos.includes(itemId)) {
-        setLikedPhotos(likedPhotos.filter((id) => id !== itemId));
-      } else {
-        setLikedPhotos((prevLikedPhotos) => [...prevLikedPhotos, itemId]);
+      setLikedPhotos((prevLikedPhotos) => [...prevLikedPhotos, itemId]);
+    }
+  };
+
+  const handleDeleteFavorite = async (itemId: number) => {
+    if (isAuthenticated && user) {
+      try {
+        await httpClient.delete(`${BASE_URL}users/favorites/${itemId}`, { withCredentials: true });
+        setLikedPhotos((prevLikedPhotos) => prevLikedPhotos.filter((id) => id !== itemId));
+      } catch (error) {
+        console.error('Error deleting favorite', error);
       }
+    } else {
+      setLikedPhotos((prevLikedPhotos) => prevLikedPhotos.filter((id) => id !== itemId));
     }
   };
 
@@ -51,7 +54,7 @@ const useFavorites = (storageKey: string) => {
     window.localStorage.setItem(storageKey, JSON.stringify(likedPhotos));
   }, [likedPhotos, storageKey]);
 
-  return { handleFavorites, likedPhotos, setLikedPhotos };
+  return { handleFavorites, likedPhotos, setLikedPhotos, handleDeleteFavorite };
 };
 
 export default useFavorites;
