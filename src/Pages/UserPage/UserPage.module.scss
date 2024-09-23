@@ -2,13 +2,18 @@
   text-align: center;
 }
 
-.cardsWrapper {
+.userPages {
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-end;
+  padding: 5px;
 
-  .card {
-    border: 2px solid violet;
-    width: 250px;
-    height: 150px;
+  p {
+    margin-right: 15px;
+
+    &:hover,
+    &:active {
+      cursor: pointer;
+      color: darkgreen;
+    }
   }
 }

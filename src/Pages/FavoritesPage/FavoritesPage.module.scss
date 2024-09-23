@@ -6,3 +6,19 @@
   display: flex;
   justify-content: space-around;
 }
+
+.userPages {
+  display: flex;
+  justify-content: flex-end;
+  padding: 5px;
+
+  p {
+    margin-right: 15px;
+
+    &:hover,
+    &:active {
+      cursor: pointer;
+      color: darkgreen;
+    }
+  }
+}
