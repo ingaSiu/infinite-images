@@ -1,10 +1,33 @@
 .container {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @media only screen and (min-width: 1200px) {
+    padding: 20px;
+  }
 }
 
 .cardsWrapper {
-  display: flex;
-  justify-content: space-around;
+  gap: 0;
+  justify-content: center;
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr;
+
+  @media only screen and (min-width: 480px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media only screen and (min-width: 728px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media only screen and (min-width: 1200px) {
+    width: 60%;
+    gap: 14px;
+  }
 }
 
 .userPages {
