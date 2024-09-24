@@ -28,7 +28,7 @@ const useFavorites = (storageKey: string) => {
     }
   };
 
-  const handleDeleteFavorite = async (itemId: number) => {
+  const deleteFavorite = async (itemId: number) => {
     if (isAuthenticated && user) {
       try {
         await httpClient.delete(`${BASE_URL}users/favorites/${itemId}`, { withCredentials: true });
@@ -55,7 +55,7 @@ const useFavorites = (storageKey: string) => {
     window.localStorage.setItem(storageKey, JSON.stringify(likedPhotos));
   }, [likedPhotos, storageKey]);
 
-  return { addFavorite, likedPhotos, setLikedPhotos, handleDeleteFavorite };
+  return { addFavorite, likedPhotos, setLikedPhotos, deleteFavorite };
 };
 
 export default useFavorites;
