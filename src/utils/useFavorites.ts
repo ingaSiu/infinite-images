@@ -9,7 +9,7 @@ const useFavorites = (storageKey: string) => {
   const initialized = useRef(false);
   const { user, isAuthenticated } = useAuthContext();
 
-  const handleFavorites = async (itemId: number, alt: string, photographer: string, src: object) => {
+  const addFavorite = async (itemId: number, alt: string, photographer: string, src: object) => {
     if (isAuthenticated && user) {
       try {
         setLikedPhotos((prevLikedPhotos) => [...prevLikedPhotos, itemId]);
@@ -19,6 +19,7 @@ const useFavorites = (storageKey: string) => {
           { id: itemId, alt, photographer, src: JSON.stringify(src) },
           { withCredentials: true },
         );
+        //TODO add detch favourites. it will get new favourites, refresh local storage and state
       } catch (error) {
         console.error('Error adding favorite', error);
       }
@@ -54,7 +55,7 @@ const useFavorites = (storageKey: string) => {
     window.localStorage.setItem(storageKey, JSON.stringify(likedPhotos));
   }, [likedPhotos, storageKey]);
 
-  return { handleFavorites, likedPhotos, setLikedPhotos, handleDeleteFavorite };
+  return { addFavorite, likedPhotos, setLikedPhotos, handleDeleteFavorite };
 };
 
 export default useFavorites;
