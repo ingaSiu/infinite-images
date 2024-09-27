@@ -2,11 +2,11 @@
 
 .searchWrapper {
   //position: relative;
-  width: 100%;
-  border: 2px solid black;
+  width: 95%;
+  //border: 2px solid black;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.3rem;
   background-color: white;
 
   @media only screen and (min-width: 728px) {
@@ -14,7 +14,7 @@
   }
 
   @media only screen and (min-width: 1200px) {
-    width: 60%;
+    width: 55%;
   }
 
   svg {
@@ -23,6 +23,7 @@
     //top: 6px;
     font-size: 2rem;
     margin-left: 10px;
+    color: gray;
   }
   input {
     //padding: 8px 22px;
@@ -30,6 +31,8 @@
     outline: none;
     width: 100%;
     font-size: 1rem;
+    padding: 14px 4px;
+
     //background-color: inherit;
     //border-radius: 6px;
     //box-shadow: 3px 3px c.$colorActiveElement;
