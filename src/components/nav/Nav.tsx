@@ -26,9 +26,6 @@ const Nav = () => {
         </div>
       ) : (
         <div className={styles.right}>
-          <Button onClick={() => navigate(REGISTER_PATH)} variant={true}>
-            Sign Up
-          </Button>
           <Button onClick={() => navigate(LOGIN_PATH)} variant={true}>
             Sign In
           </Button>
