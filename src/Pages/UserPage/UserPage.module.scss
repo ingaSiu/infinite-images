@@ -17,3 +17,24 @@
     }
   }
 }
+.formWrapper {
+  h1 {
+    margin-bottom: 2rem;
+  }
+}
+
+.inputContainer {
+  input {
+    padding: 6px 8px;
+    width: 200px;
+    margin-bottom: 16px;
+
+    @media only screen and (min-width: 480px) {
+      width: 300px;
+    }
+
+    @media only screen and (min-width: 900px) {
+      width: 400px;
+    }
+  }
+}
