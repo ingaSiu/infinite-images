@@ -56,8 +56,8 @@ const UpdateUserForm = () => {
     }
   };
   return (
-    <div>
-      <h1>My profile details</h1>
+    <div className={styles.formWrapper}>
+      <h1>Update my profile details</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.inputContainer}>
           <input type="text" placeholder="Username" {...register('username')} />
