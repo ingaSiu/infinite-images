@@ -13,7 +13,7 @@ import useFetch from '../../utils/useFetch';
 const Home = () => {
   const { errorMsg, isLoading, images, page, getNewImages, getImagesNextPage, setPage } = useFetch();
 
-  const { addFavorite, likedPhotos } = useFavorites(FAVORITES_KEY);
+  const { addFavorite, likedPhotos } = useFavorites();
 
   const prevPage = useRef(0);
   const bottom = useRef<HTMLDivElement | null>(null);
