@@ -17,6 +17,7 @@ type AuthContextProps = {
   login: (email: string, password: string) => Promise<void>;
   logout: () => void;
   isAuthenticated: boolean;
+  setUser: React.Dispatch<React.SetStateAction<User | null>>;
 };
 
 export const AuthContext = createContext<AuthContextProps | undefined>(undefined);
@@ -64,5 +65,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
 
-  return <AuthContext.Provider value={{ user, login, isAuthenticated, logout }}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={{ user, login, isAuthenticated, logout, setUser }}>{children}</AuthContext.Provider>
+  );
 };
