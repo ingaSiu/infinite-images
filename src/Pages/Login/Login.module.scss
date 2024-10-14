@@ -35,6 +35,27 @@
   }
 }
 
+.formContainer {
+  display: flex;
+  flex-direction: column;
+
+  span {
+    margin-top: 1rem;
+    font-size: 0.8rem;
+  }
+
+  p {
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    cursor: pointer;
+
+    &:hover {
+      color: seagreen;
+      text-decoration: underline wavy seagreen 1px;
+    }
+  }
+}
+
 .inputWrapper {
   display: flex;
   flex-direction: column;
