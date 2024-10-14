@@ -7,8 +7,8 @@ import { useNavigate } from 'react-router-dom';
 import { useUserFavorites } from '../../hooks/useUserFavorites';
 
 const FavoritesPage = () => {
-  const { favorites } = useUserFavorites();
-  const { deleteFavorite } = useFavorites('likedPhotos');
+  const { favorites, fetchFavorites } = useUserFavorites();
+  const { deleteFavorite } = useFavorites();
   const navigate = useNavigate();
   return (
     <div>
@@ -29,7 +29,7 @@ const FavoritesPage = () => {
                 photographer={fav.photographer}
                 tabIndex={index}
                 isClicked={true}
-                onClick={() => deleteFavorite(fav.id)}
+                onClick={() => deleteFavorite(fav.id, fetchFavorites)}
               />
             ))
           ) : (
