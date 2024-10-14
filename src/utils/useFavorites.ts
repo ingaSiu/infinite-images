@@ -3,11 +3,13 @@ import { useEffect, useRef, useState } from 'react';
 import { BASE_URL } from '../api/baseApi';
 import httpClient from '../api/httpClient';
 import { useAuthContext } from '../hooks/useAuthContext';
+import { useUserFavorites } from '../hooks/useUserFavorites';
 
 const useFavorites = (storageKey: string) => {
   const [likedPhotos, setLikedPhotos] = useState<number[]>([]);
   const initialized = useRef(false);
   const { user, isAuthenticated } = useAuthContext();
+  const { fetchFavorites } = useUserFavorites();
 
   const addFavorite = async (itemId: number, alt: string, photographer: string, src: object) => {
     if (isAuthenticated && user) {
@@ -19,7 +21,7 @@ const useFavorites = (storageKey: string) => {
           { id: itemId, alt, photographer, src: JSON.stringify(src) },
           { withCredentials: true },
         );
-        //TODO add detch favourites. it will get new favourites, refresh local storage and state
+        fetchFavorites();
       } catch (error) {
         console.error('Error adding favorite', error);
       }
@@ -33,6 +35,9 @@ const useFavorites = (storageKey: string) => {
       try {
         await httpClient.delete(`${BASE_URL}users/favorites/${itemId}`, { withCredentials: true });
         setLikedPhotos((prevLikedPhotos) => prevLikedPhotos.filter((id) => id !== itemId));
+
+        console.log('Deleted favorite, calling fetchFavorites');
+        fetchFavorites();
       } catch (error) {
         console.error('Error deleting favorite', error);
       }
