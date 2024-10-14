@@ -1,15 +1,15 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { BASE_URL } from '../api/baseApi';
 import httpClient from '../api/httpClient';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useUserFavorites } from '../hooks/useUserFavorites';
 
-const useFavorites = (storageKey: string) => {
+const useFavorites = () => {
   const [likedPhotos, setLikedPhotos] = useState<number[]>([]);
-  const initialized = useRef(false);
+  //const initialized = useRef(false);
   const { user, isAuthenticated } = useAuthContext();
-  const { fetchFavorites } = useUserFavorites();
+  const { fetchFavorites, favorites } = useUserFavorites();
 
   const addFavorite = async (itemId: number, alt: string, photographer: string, src: object) => {
     if (isAuthenticated && user) {
@@ -26,41 +26,34 @@ const useFavorites = (storageKey: string) => {
         console.error('Error adding favorite', error);
       }
     } else {
-      setLikedPhotos((prevLikedPhotos) => [...prevLikedPhotos, itemId]);
+      console.log('User not authenticated, cannot add favorite.');
     }
   };
 
-  const deleteFavorite = async (itemId: number) => {
+  const deleteFavorite = async (itemId: number, fetchFavorites: () => void) => {
     if (isAuthenticated && user) {
       try {
         await httpClient.delete(`${BASE_URL}users/favorites/${itemId}`, { withCredentials: true });
-        setLikedPhotos((prevLikedPhotos) => prevLikedPhotos.filter((id) => id !== itemId));
+        //setLikedPhotos((prevLikedPhotos) => prevLikedPhotos.filter((id) => id !== itemId));
 
         console.log('Deleted favorite, calling fetchFavorites');
         fetchFavorites();
       } catch (error) {
         console.error('Error deleting favorite', error);
       }
-    } else {
-      setLikedPhotos((prevLikedPhotos) => prevLikedPhotos.filter((id) => id !== itemId));
     }
   };
 
   useEffect(() => {
-    if (!initialized.current) {
-      const storedData = window.localStorage.getItem(storageKey);
-      if (storedData !== null) {
-        setLikedPhotos(JSON.parse(storedData));
-      }
+    if (isAuthenticated && user) {
+      const favoriteIds = favorites.map((favorite) => favorite.id);
+      setLikedPhotos(favoriteIds);
+    } else {
+      setLikedPhotos([]);
     }
-    initialized.current = true;
-  }, [storageKey]);
+  }, [isAuthenticated, user, favorites]);
 
-  useEffect(() => {
-    window.localStorage.setItem(storageKey, JSON.stringify(likedPhotos));
-  }, [likedPhotos, storageKey]);
-
-  return { addFavorite, likedPhotos, setLikedPhotos, deleteFavorite };
+  return { addFavorite, deleteFavorite, likedPhotos };
 };
 
 export default useFavorites;
