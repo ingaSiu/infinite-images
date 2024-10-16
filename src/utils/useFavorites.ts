@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 
 import { BASE_URL } from '../api/baseApi';
+import { LOGIN_PATH } from '../routes/consts';
 import httpClient from '../api/httpClient';
 import { useAuthContext } from '../hooks/useAuthContext';
+import { useNavigate } from 'react-router-dom';
 import { useUserFavorites } from '../hooks/useUserFavorites';
 
 const useFavorites = () => {
@@ -10,6 +12,7 @@ const useFavorites = () => {
   //const initialized = useRef(false);
   const { user, isAuthenticated } = useAuthContext();
   const { fetchFavorites, favorites } = useUserFavorites();
+  const navigate = useNavigate();
 
   const addFavorite = async (itemId: number, alt: string, photographer: string, src: object) => {
     if (isAuthenticated && user) {
@@ -27,6 +30,7 @@ const useFavorites = () => {
       }
     } else {
       console.log('User not authenticated, cannot add favorite.');
+      navigate(LOGIN_PATH);
     }
   };
 
