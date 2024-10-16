@@ -1,4 +1,4 @@
-import { FAVORITES_PATH, HOME_PATH, LOGIN_PATH, REGISTER_PATH } from '../../routes/consts';
+import { FAVORITES_PATH, HOME_PATH, LOGIN_PATH } from '../../routes/consts';
 
 import Button from '../button/Button';
 import styles from './Nav.module.scss';
