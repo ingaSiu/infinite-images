@@ -40,7 +40,6 @@ const useFavorites = () => {
         await httpClient.delete(`${BASE_URL}users/favorites/${itemId}`, { withCredentials: true });
         //setLikedPhotos((prevLikedPhotos) => prevLikedPhotos.filter((id) => id !== itemId));
 
-        console.log('Deleted favorite, calling fetchFavorites');
         fetchFavorites();
       } catch (error) {
         console.error('Error deleting favorite', error);
