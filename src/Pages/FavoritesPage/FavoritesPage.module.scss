@@ -1,0 +1,47 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @media only screen and (min-width: 1200px) {
+    padding: 20px;
+  }
+}
+
+.cardsWrapper {
+  gap: 0;
+  justify-content: center;
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr;
+
+  @media only screen and (min-width: 480px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media only screen and (min-width: 728px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media only screen and (min-width: 1200px) {
+    width: 60%;
+    gap: 14px;
+  }
+}
+
+.userPages {
+  display: flex;
+  justify-content: flex-end;
+  padding: 5px;
+
+  p {
+    margin-right: 15px;
+
+    &:hover,
+    &:active {
+      cursor: pointer;
+      color: darkgreen;
+    }
+  }
+}

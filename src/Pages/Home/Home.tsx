@@ -13,7 +13,7 @@ import useFetch from '../../utils/useFetch';
 const Home = () => {
   const { errorMsg, isLoading, images, page, getNewImages, getImagesNextPage, setPage } = useFetch();
 
-  const { handleFavorites, likedPhotos } = useFavorites(FAVORITES_KEY);
+  const { addFavorite, likedPhotos } = useFavorites();
 
   const prevPage = useRef(0);
   const bottom = useRef<HTMLDivElement | null>(null);
@@ -58,7 +58,7 @@ const Home = () => {
                 src={item.src.large}
                 alt={item.alt}
                 photographer={item.photographer}
-                onClick={() => handleFavorites(item.id)}
+                onClick={() => addFavorite(item.id, item.alt, item.photographer, item.src)}
                 isClicked={likedPhotos.includes(item.id)}
                 tabIndex={index}
               />

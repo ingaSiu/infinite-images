@@ -1,32 +1,39 @@
 import { Route, Routes as RoutesWrapper } from 'react-router-dom';
-import { USER_PATH, mainLayoutRoutes } from './consts';
+import { mainLayoutRoutes, userLayoutRoutes } from './consts';
 
 import PrivateRoute from '../components/privateRoute/PrivateRoute';
 
 const Routes = () => {
-  const { Layout, routes } = mainLayoutRoutes;
+  const { Layout: MainLayout, routes } = mainLayoutRoutes;
+  const { Layout: UserLayout, userRoutes } = userLayoutRoutes;
 
   return (
     <RoutesWrapper>
       {routes.map(({ path, Component }) => {
-        const isPrivateRoute = path === USER_PATH;
-
         return (
           <Route
             key={path}
             path={path}
             element={
-              isPrivateRoute ? (
-                <PrivateRoute>
-                  <Layout>
-                    <Component />
-                  </Layout>
-                </PrivateRoute>
-              ) : (
-                <Layout>
+              <MainLayout>
+                <Component />
+              </MainLayout>
+            }
+          />
+        );
+      })}
+
+      {userRoutes.map(({ path, Component }) => {
+        return (
+          <Route
+            key={path}
+            path={path}
+            element={
+              <PrivateRoute>
+                <UserLayout>
                   <Component />
-                </Layout>
-              )
+                </UserLayout>
+              </PrivateRoute>
             }
           />
         );

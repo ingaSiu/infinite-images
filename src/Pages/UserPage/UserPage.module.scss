@@ -2,13 +2,24 @@
   text-align: center;
 }
 
-.cardsWrapper {
-  display: flex;
-  justify-content: space-around;
+.formWrapper {
+  h1 {
+    margin-bottom: 2rem;
+  }
+}
 
-  .card {
-    border: 2px solid violet;
-    width: 250px;
-    height: 150px;
+.inputContainer {
+  input {
+    padding: 6px 8px;
+    width: 200px;
+    margin-bottom: 16px;
+
+    @media only screen and (min-width: 480px) {
+      width: 300px;
+    }
+
+    @media only screen and (min-width: 900px) {
+      width: 400px;
+    }
   }
 }
