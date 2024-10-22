@@ -4,7 +4,6 @@ import { BASE_URL } from '../../api/baseApi';
 import Button from '../../components/button/Button';
 import { EMAIL_REGEX } from '../../utils/regex';
 import { LOGIN_PATH } from '../../routes/consts';
-import axios from 'axios';
 import httpClient from '../../api/httpClient';
 import styles from './Register.module.scss';
 import { useForm } from 'react-hook-form';

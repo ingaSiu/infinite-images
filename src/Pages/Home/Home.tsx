@@ -3,7 +3,6 @@
 import { useEffect, useRef } from 'react';
 
 import Card from '../../components/card/Card';
-import { FAVORITES_KEY } from '../../consts/favoritesKey';
 import Hero from '../../components/hero/Hero';
 import Loader from '../../components/loader/Loader';
 import styles from './Home.module.scss';
