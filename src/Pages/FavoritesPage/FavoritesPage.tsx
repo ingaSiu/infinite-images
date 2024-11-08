@@ -1,10 +1,11 @@
 import Card from '../../components/card/Card';
+import Loader from '../../components/loader/Loader';
 import styles from './FavoritesPage.module.scss';
 import useFavorites from '../../utils/useFavorites';
 import { useUserFavorites } from '../../hooks/useUserFavorites';
 
 const FavoritesPage = () => {
-  const { favorites, fetchFavorites } = useUserFavorites();
+  const { favorites, fetchFavorites, isLoading } = useUserFavorites();
   const { deleteFavorite } = useFavorites();
 
   return (
@@ -12,6 +13,7 @@ const FavoritesPage = () => {
       <div className={styles.container}>
         <h1>Favorite images</h1>
         <div className={styles.cardsWrapper}>
+          {isLoading && <Loader />}
           {favorites.length > 0 ? (
             favorites.map((fav, index) => (
               <Card
