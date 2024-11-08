@@ -1,14 +1,17 @@
 import { FAVORITES_PATH, USER_PATH } from '../../routes/consts';
 
+import { NavLink } from 'react-router-dom';
 import styles from './UserNav.module.scss';
-import { useNavigate } from 'react-router-dom';
 
 const UserNav = () => {
-  const navigate = useNavigate();
   return (
     <section className={styles.userPages}>
-      <p onClick={() => navigate(FAVORITES_PATH)}>My favorites</p>
-      <p onClick={() => navigate(USER_PATH)}>My profile</p>
+      <NavLink to={FAVORITES_PATH} end style={({ isActive }) => ({ color: isActive ? '#ebac96' : '' })}>
+        My Favorites
+      </NavLink>
+      <NavLink to={USER_PATH} end style={({ isActive }) => ({ color: isActive ? '#ebac96' : '' })}>
+        My profile
+      </NavLink>
     </section>
   );
 };
