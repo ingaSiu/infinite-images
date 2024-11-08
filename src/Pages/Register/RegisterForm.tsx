@@ -11,13 +11,13 @@ import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 const schema = yup.object().shape({
-  username: yup.string().required('Username field is required.'),
-  email: yup.string().required('Email is required.').matches(EMAIL_REGEX, 'Invalid email address.'),
+  username: yup.string().required('Username field is required'),
+  email: yup.string().required('Email is required').matches(EMAIL_REGEX, 'Invalid email address'),
   password: yup.string().required('Password is required'),
   confirmPassword: yup
     .string()
     .required('Please confirm your password')
-    .oneOf([yup.ref('password')], 'Your passwords do not match.'),
+    .oneOf([yup.ref('password')], 'Your passwords do not match'),
 });
 
 type RegisterFormData = yup.InferType<typeof schema>;

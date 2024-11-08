@@ -11,7 +11,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 const schema = yup.object().shape({
   email: yup.string().required('Email is required').matches(EMAIL_REGEX, 'Invalid email address'),
-  password: yup.string().required('Password is required.'),
+  password: yup.string().required('Password is required'),
 });
 
 type LoginData = yup.InferType<typeof schema>;
