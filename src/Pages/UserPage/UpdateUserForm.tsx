@@ -2,6 +2,7 @@ import { BASE_URL } from '../../api/baseApi';
 import Button from '../../components/button/Button';
 import httpClient from '../../api/httpClient';
 import styles from './UserPage.module.scss';
+import toast from 'react-hot-toast';
 import { useAuthContext } from '../../hooks/useAuthContext';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
@@ -36,7 +37,7 @@ const UpdateUserForm = () => {
   const onSubmit = async (data: FormData) => {
     try {
       if (data.password !== data.confirmPassword) {
-        alert('Passwords do not match');
+        toast.error('Passwords do not match');
         return;
       } else {
         const response = await httpClient.put(`${BASE_URL}users/profile`, {
@@ -47,12 +48,12 @@ const UpdateUserForm = () => {
 
         if (response.data) {
           setUser(response.data);
-          alert('Profile updated successfully');
+          toast.success('Profile updated successfully');
         }
       }
     } catch (error) {
       console.error(error);
-      alert('Failed to update profile');
+      toast.error('Failed to update profile');
     }
   };
   return (
