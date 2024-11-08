@@ -44,7 +44,7 @@
     font-size: 0.8rem;
   }
 
-  p {
+  .linkToRegister {
     text-transform: uppercase;
     font-size: 0.8rem;
     cursor: pointer;
@@ -78,9 +78,9 @@
       width: 350px;
     }
   }
-}
 
-.errorMsg {
-  color: red;
-  margin-bottom: 0.5rem;
+  .errorMsg {
+    color: red;
+    margin-bottom: 0.5rem;
+  }
 }

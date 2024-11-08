@@ -14,7 +14,9 @@ const Login = () => {
         <div className={styles.formContainer}>
           <LoginForm />
           <span>Don't have an account?</span>
-          <p onClick={() => navigate(REGISTER_PATH)}>Sign up</p>
+          <p onClick={() => navigate(REGISTER_PATH)} className={styles.linkToRegister}>
+            Sign up
+          </p>
         </div>
       </div>
     </div>
