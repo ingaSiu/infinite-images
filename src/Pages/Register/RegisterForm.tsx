@@ -6,6 +6,7 @@ import { EMAIL_REGEX } from '../../utils/regex';
 import { LOGIN_PATH } from '../../routes/consts';
 import httpClient from '../../api/httpClient';
 import styles from './Register.module.scss';
+import { toast } from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -37,9 +38,10 @@ const RegisterForm = () => {
       await httpClient.post(`${BASE_URL}users/`, { email, username, password });
 
       navigate(LOGIN_PATH);
+      toast.success('Success! Please log in.');
     } catch (error) {
       console.error(error);
-      alert('Registration failed. Please try again');
+      toast.error('Registration failed. Please try again.');
     }
   };
 

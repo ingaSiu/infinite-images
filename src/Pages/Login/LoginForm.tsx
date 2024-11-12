@@ -4,7 +4,6 @@ import Button from '../../components/button/Button';
 import { EMAIL_REGEX } from '../../utils/regex';
 import { FAVORITES_PATH } from '../../routes/consts';
 import styles from './Login.module.scss';
-import toast from 'react-hot-toast';
 import { useAuthContext } from '../../hooks/useAuthContext';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -45,7 +44,6 @@ const LoginForm = () => {
       navigate(FAVORITES_PATH);
     } catch (error) {
       console.error(error);
-      toast.error('Login failed');
     }
   };
   return (
