@@ -45,8 +45,10 @@ const useFavorites = () => {
         //setLikedPhotos((prevLikedPhotos) => prevLikedPhotos.filter((id) => id !== itemId));
 
         fetchFavorites();
+        toast.success('Image removed');
       } catch (error) {
         console.error('Error deleting favorite', error);
+        toast.error('Error removing favorite');
       }
     }
   };
