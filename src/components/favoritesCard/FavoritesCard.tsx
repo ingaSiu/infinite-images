@@ -1,16 +1,16 @@
 import Button from '../button/Button';
-import styles from './Card.module.scss';
+import styles from './FavoritesCard.module.scss';
 
-type CardProps = {
+type FavoritesCardProps = {
   photographer?: string;
   alt: string;
   src: string;
+  onViewImage?: (event: React.SyntheticEvent) => void;
   onClick?: (event: React.SyntheticEvent) => void;
   isClicked?: boolean;
   tabIndex: number;
 };
-
-const Card = ({ alt, src, photographer, onClick, isClicked, tabIndex }: CardProps) => {
+const FavoritesCard = ({ alt, src, photographer, onClick, onViewImage, isClicked, tabIndex }: FavoritesCardProps) => {
   return (
     <div tabIndex={tabIndex} className={styles.imageWrapper}>
       <img src={src} alt={alt} loading="lazy" className={styles.image} />
@@ -24,10 +24,11 @@ const Card = ({ alt, src, photographer, onClick, isClicked, tabIndex }: CardProp
           <Button onClick={onClick} isClicked={isClicked}>
             {isClicked ? 'Remove' : 'Favorite'}
           </Button>
+          <Button onClick={onViewImage}>View Image</Button>
         </div>
       </div>
     </div>
   );
 };
 
-export default Card;
+export default FavoritesCard;

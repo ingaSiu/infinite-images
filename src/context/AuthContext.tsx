@@ -3,6 +3,7 @@ import { ReactNode, createContext, useEffect, useState } from 'react';
 import { BASE_URL } from '../api/baseApi';
 import { LOGIN_PATH } from '../routes/consts';
 import httpClient from '../api/httpClient';
+import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
 type User = {
@@ -51,9 +52,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       const { data } = await httpClient.get<User>(`${BASE_URL}users/profile`);
       setUser(data);
       navigate('/profile/' + data._id + '/favorites');
+      toast.success('Successfully logged in!');
     } catch (error) {
       console.error(error);
-      alert('Login failed');
+      toast.error('Login failed. Please try again.');
     }
   };
 
@@ -61,6 +63,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     localStorage.removeItem('isAuthenticated');
     setUser(null);
     navigate(LOGIN_PATH);
+    toast.success('Successfully logged out!');
   };
 
   const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';

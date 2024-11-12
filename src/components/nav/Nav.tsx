@@ -11,7 +11,7 @@ const Nav = () => {
   return (
     <div className={styles.navContainer}>
       <div className={styles.left} onClick={() => navigate(HOME_PATH)}>
-        <img src="cat_icon.png" alt="cat icon from pixels" />
+        <img src="/cat_icon.png" alt="cat icon from pixels" />
         <h2>Images viewing website</h2>
       </div>
 

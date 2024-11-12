@@ -1,3 +1,5 @@
+@use '../../scss/colors' as c;
+
 .container {
   display: flex;
   flex-direction: column;
@@ -69,6 +71,6 @@
 }
 
 .errorMsg {
-  color: red;
+  color: c.$colorError;
   margin-bottom: 0.5rem;
 }

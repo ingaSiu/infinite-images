@@ -30,33 +30,21 @@ const LoginForm = () => {
     const { email, password } = data;
 
     try {
-      /*await axios.post(
-        `${BASE_URL}users/auth`,
-        { email, password },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        },
-      );*/
       login(email, password);
       reset();
       navigate(FAVORITES_PATH);
     } catch (error) {
       console.error(error);
-      alert('Login failed');
     }
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className={styles.inputWrapper}>
-        {/* <label htmlFor="email">User Email</label> */}
         <input type="email" {...register('email')} placeholder="Email" />
         {errors.email && <p className={styles.errorMsg}>{errors.email.message}</p>}
       </div>
 
       <div className={styles.inputWrapper}>
-        {/* <label htmlFor="password">Password</label> */}
         <input type="password" {...register('password')} placeholder="Password" />
         {errors.password && <p className={styles.errorMsg}>{errors.password.message}</p>}
       </div>

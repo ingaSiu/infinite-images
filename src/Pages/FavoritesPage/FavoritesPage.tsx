@@ -1,4 +1,4 @@
-import Card from '../../components/card/Card';
+import FavoritesCard from '../../components/favoritesCard/FavoritesCard';
 import Loader from '../../components/loader/Loader';
 import styles from './FavoritesPage.module.scss';
 import useFavorites from '../../utils/useFavorites';
@@ -16,7 +16,7 @@ const FavoritesPage = () => {
           {isLoading && <Loader />}
           {favorites.length > 0 ? (
             favorites.map((fav, index) => (
-              <Card
+              <FavoritesCard
                 key={fav.id}
                 src={fav.src.large}
                 alt={fav.alt}
@@ -24,6 +24,7 @@ const FavoritesPage = () => {
                 tabIndex={index}
                 isClicked={true}
                 onClick={() => deleteFavorite(fav.id, fetchFavorites)}
+                onViewImage={() => window.open(fav.src.original, '_blank')}
               />
             ))
           ) : (

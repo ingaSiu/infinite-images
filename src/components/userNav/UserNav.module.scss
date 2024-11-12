@@ -1,3 +1,5 @@
+@use '../../scss/colors' as c;
+
 .userPages {
   display: flex;
   justify-content: flex-end;
@@ -6,12 +8,12 @@
   a {
     margin-right: 15px;
     text-decoration: none;
-    color: black;
+    color: c.$colorBlack;
 
     &:hover,
     &:active {
       cursor: pointer;
-      color: darkgreen;
+      color: c.$colorBgHero;
     }
   }
 }
