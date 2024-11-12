@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { BASE_URL } from '../api/baseApi';
 import { LOGIN_PATH } from '../routes/consts';
 import httpClient from '../api/httpClient';
+import { toast } from 'react-hot-toast';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useNavigate } from 'react-router-dom';
 import { useUserFavorites } from '../hooks/useUserFavorites';
@@ -25,12 +26,15 @@ const useFavorites = () => {
           { withCredentials: true },
         );
         fetchFavorites();
+        toast.success('Favorite image added!');
       } catch (error) {
         console.error('Error adding favorite', error);
+        toast.error('Could not add to favorites');
       }
     } else {
       console.log('User not authenticated, cannot add favorite.');
       navigate(LOGIN_PATH);
+      toast.error('Please log in to add favorites');
     }
   };
 
