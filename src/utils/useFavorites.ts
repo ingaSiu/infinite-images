@@ -40,15 +40,20 @@ const useFavorites = () => {
 
   const deleteFavorite = async (itemId: number, fetchFavorites: () => void) => {
     if (isAuthenticated && user) {
-      try {
-        await httpClient.delete(`${BASE_URL}users/favorites/${itemId}`, { withCredentials: true });
-        //setLikedPhotos((prevLikedPhotos) => prevLikedPhotos.filter((id) => id !== itemId));
+      const confirmed = window.confirm('Are you sure you want to remove this image?');
+      if (confirmed) {
+        try {
+          await httpClient.delete(`${BASE_URL}users/favorites/${itemId}`, { withCredentials: true });
+          //setLikedPhotos((prevLikedPhotos) => prevLikedPhotos.filter((id) => id !== itemId));
 
-        fetchFavorites();
-        toast.success('Image removed');
-      } catch (error) {
-        console.error('Error deleting favorite', error);
-        toast.error('Error removing favorite');
+          fetchFavorites();
+          toast.success('Image removed');
+        } catch (error) {
+          console.error('Error deleting favorite', error);
+          toast.error('Error removing favorite');
+        }
+      } else {
+        return;
       }
     }
   };
