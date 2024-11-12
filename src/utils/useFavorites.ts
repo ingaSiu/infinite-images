@@ -10,7 +10,6 @@ import { useUserFavorites } from '../hooks/useUserFavorites';
 
 const useFavorites = () => {
   const [likedPhotos, setLikedPhotos] = useState<number[]>([]);
-  //const initialized = useRef(false);
   const { user, isAuthenticated } = useAuthContext();
   const { fetchFavorites, favorites } = useUserFavorites();
   const navigate = useNavigate();
@@ -44,7 +43,6 @@ const useFavorites = () => {
       if (confirmed) {
         try {
           await httpClient.delete(`${BASE_URL}users/favorites/${itemId}`, { withCredentials: true });
-          //setLikedPhotos((prevLikedPhotos) => prevLikedPhotos.filter((id) => id !== itemId));
 
           fetchFavorites();
           toast.success('Image removed');

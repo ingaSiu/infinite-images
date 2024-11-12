@@ -48,25 +48,21 @@ const RegisterForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className={styles.inputContainer}>
-        {/* <label htmlFor="username">Username</label> */}
         <input type="text" {...register('username')} placeholder="Username" />
         {errors.username && <p className={styles.errorMsg}>{errors.username.message}</p>}
       </div>
 
       <div className={styles.inputContainer}>
-        {/* <label htmlFor="email">Email</label> */}
         <input type="email" {...register('email')} placeholder="Email" />
         {errors.email && <p className={styles.errorMsg}>{errors.email.message}</p>}
       </div>
 
       <div className={styles.inputContainer}>
-        {/* <label htmlFor="password">Password</label> */}
         <input type="password" {...register('password')} placeholder="Password" />
         {errors.password && <p className={styles.errorMsg}>{errors.password.message}</p>}
       </div>
 
       <div className={styles.inputContainer}>
-        {/* <label>Confirm Password</label> */}
         <input type="password" {...register('confirmPassword')} placeholder="Confirm password" />
         {errors.confirmPassword && <p className={styles.errorMsg}>{errors.confirmPassword.message}</p>}
       </div>
