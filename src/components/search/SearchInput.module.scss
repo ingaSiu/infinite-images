@@ -1,13 +1,11 @@
 @use '../../scss/colors' as c;
 
 .searchWrapper {
-  //position: relative;
   width: 95%;
-  //border: 2px solid black;
   display: flex;
   align-items: center;
   gap: 0.3rem;
-  background-color: white;
+  background-color: c.$colorWhite;
 
   @media only screen and (min-width: 728px) {
     width: 80%;
@@ -18,23 +16,15 @@
   }
 
   svg {
-    //position: absolute;
-    //left: 2px;
-    //top: 6px;
     font-size: 2rem;
     margin-left: 10px;
-    color: gray;
+    color: c.$colorAccentGrey;
   }
   input {
-    //padding: 8px 22px;
     border: none;
     outline: none;
     width: 100%;
     font-size: 1rem;
     padding: 14px 4px;
-
-    //background-color: inherit;
-    //border-radius: 6px;
-    //box-shadow: 3px 3px c.$colorActiveElement;
   }
 }

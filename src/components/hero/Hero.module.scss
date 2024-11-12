@@ -1,10 +1,12 @@
+@use '../../scss/colors' as c;
+
 .heroWrapper {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2rem;
-  background-color: #edc69c;
+  background-color: c.$colorBgHero;
   padding: 4rem 0.5rem;
   text-align: center;
 
