@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { BASE_URL } from '../api/baseApi';
 import { FavoritesProp } from '../types/favorites';
+import axios from 'axios';
 import httpClient from '../api/httpClient';
 
 export const useUserFavorites = () => {
@@ -24,9 +25,13 @@ export const useUserFavorites = () => {
       console.log('Favorites updated:', data);
 
       setIsLoading(false);
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
-      setError(error.response?.data?.message || 'Failed to fetch favorites');
+    } catch (err) {
+      if (axios.isAxiosError(err)) {
+        setError(err.response?.data?.message || 'Failed to fetch favorites');
+      } else {
+        setError('An unexpected error occurred');
+      }
+
       setIsLoading(false);
     }
   };
