@@ -22,7 +22,7 @@ const Card = ({ alt, src, photographer, onClick, isClicked, tabIndex }: CardProp
 
         <>
           <Button onClick={onClick} isClicked={isClicked}>
-            {isClicked ? 'Remove' : 'Favorite'}
+            Favorite
           </Button>
         </>
       </div>
