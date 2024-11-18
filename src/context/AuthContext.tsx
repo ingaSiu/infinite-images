@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           const { data } = await httpClient.get<User>(`${BASE_URL}users/profile`);
           setUser(data);
         } catch (error) {
-          console.log(error);
+          console.error(error);
           logout();
         }
       }

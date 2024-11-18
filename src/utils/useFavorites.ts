@@ -31,7 +31,6 @@ const useFavorites = () => {
         toast.error('Could not add to favorites');
       }
     } else {
-      console.log('User not authenticated, cannot add favorite.');
       navigate(LOGIN_PATH);
       toast.error('Please log in to add favorites');
     }

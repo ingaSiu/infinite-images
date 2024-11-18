@@ -22,8 +22,6 @@ export const useUserFavorites = () => {
       const favoriteIds = data.map((favorite: FavoritesProp) => favorite.id);
       window.localStorage.setItem('favorites', JSON.stringify(favoriteIds));
 
-      console.log('Favorites updated:', data);
-
       setIsLoading(false);
     } catch (err) {
       if (axios.isAxiosError(err)) {
