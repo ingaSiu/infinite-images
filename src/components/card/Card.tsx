@@ -21,7 +21,7 @@ const Card = ({ alt, src, photographer, onClick, isClicked, tabIndex }: CardProp
         </div>
 
         <>
-          <Button onClick={onClick} isClicked={isClicked}>
+          <Button onClick={onClick} isClicked={isClicked} disabled={isClicked ? true : false}>
             Favorite
           </Button>
         </>
