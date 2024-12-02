@@ -20,7 +20,7 @@ const FavoritesCard = ({ alt, src, photographer, onClick, onViewImage, isClicked
           <div className={styles.author}>{photographer}</div>
         </div>
 
-        <div>
+        <div className={styles.btnContainer}>
           <Button onClick={onClick} isClicked={isClicked}>
             {isClicked ? 'Remove' : 'Favorite'}
           </Button>
