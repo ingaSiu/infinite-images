@@ -15,18 +15,20 @@ const FavoritesPage = () => {
         <div className={styles.cardsWrapper}>
           {isLoading && <Loader />}
           {favorites.length > 0 ? (
-            favorites.map((fav, index) => (
-              <FavoritesCard
-                key={fav.id}
-                src={fav.src.large}
-                alt={fav.alt}
-                photographer={fav.photographer}
-                tabIndex={index}
-                isClicked={true}
-                onClick={() => deleteFavorite(fav.id, fetchFavorites)}
-                onViewImage={() => window.open(fav.src.original, '_blank')}
-              />
-            ))
+            [...favorites]
+              .reverse()
+              .map((fav, index) => (
+                <FavoritesCard
+                  key={fav.id}
+                  src={fav.src.large}
+                  alt={fav.alt}
+                  photographer={fav.photographer}
+                  tabIndex={index}
+                  isClicked={true}
+                  onClick={() => deleteFavorite(fav.id, fetchFavorites)}
+                  onViewImage={() => window.open(fav.src.original, '_blank')}
+                />
+              ))
           ) : (
             <p>No favorites yet!</p>
           )}
