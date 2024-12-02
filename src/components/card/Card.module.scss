@@ -42,7 +42,7 @@
 }
 
 .imageWrapper:hover .image {
-  opacity: 0.5;
+  opacity: 0.3;
 }
 
 @media (hover: none) {
@@ -51,7 +51,7 @@
   }
 
   .imageWrapper:focus .image {
-    opacity: 0.5;
+    opacity: 0.3;
   }
 }
 
