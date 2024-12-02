@@ -16,18 +16,14 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4
 
-      - name: 'Create env file'
-        run: |
-          touch .env
-          echo VITE_ACCESS_KEY=${{ secrets.VITE_ACCESS_KEY }} >> .env
-          echo VITE_FAVOURITES_KEY=${{ secrets.VITE_FAVOURITES_KEY }} >> .env
-          echo VITE_API_BASE_URL=${{ secrets.VITE_API_BASE_URL }} >> .env
-          cat .env
-
       - name: build
         run: |
           yarn install
           yarn predeploy
+        env:
+          VITE_ACCESS_KEY: ${{ secrets.VITE_ACCESS_KEY }}
+          VITE_FAVOURITES_KEY: ${{ secrets.VITE_FAVOURITES_KEY }}
+          VITE_API_BASE_URL: ${{ secrets.VITE_API_BASE_URL }}
 
       - name: upload
         uses: actions/upload-pages-artifact@v3
