@@ -11,5 +11,5 @@ Developed by Inga Siudikienė
 - Run command yarn in the terminal to add packages
 - To start the project, run the command yarn dev
 
-![Img of page-1](https://i.imgur.com/Ul3lHSB.png)
-![Img of page-1](https://i.imgur.com/g8vUPGW.png)
+![Img of page-1]()
+![Img of page-1]()
