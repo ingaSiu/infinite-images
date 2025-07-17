@@ -14,7 +14,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       <AuthProvider>
         <App />
       </AuthProvider>
-      <Toaster position="top-right" />
+      <Toaster position="top-center" />
     </BrowserRouter>
   </React.StrictMode>,
 );

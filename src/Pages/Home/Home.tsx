@@ -17,6 +17,7 @@ const Home = () => {
   const prevPage = useRef(0);
   const bottom = useRef<HTMLDivElement | null>(null);
   const initialized = useRef(false);
+  const observerRef = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
     if (!initialized.current) {
@@ -34,6 +35,12 @@ const Home = () => {
       getImagesAndObserve();
       initialized.current = true;
     }
+
+    return () => {
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
+    };
   }, []);
 
   useEffect(() => {
